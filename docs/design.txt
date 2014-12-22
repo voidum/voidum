@@ -1,0 +1,3 @@
+[rule]
+1.one physical file for one component
+2.component describe itself without other configuarations
