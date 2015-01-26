@@ -16,9 +16,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="runtime">
-      <UniqueIdentifier>{283362de-bd5d-4be4-a17d-566a57a1e487}</UniqueIdentifier>
-    </Filter>
     <Filter Include="model">
       <UniqueIdentifier>{7e52a91b-91d9-4640-93fe-fadcbfc474af}</UniqueIdentifier>
     </Filter>
@@ -28,10 +25,16 @@
     <Filter Include="model\source">
       <UniqueIdentifier>{bca42495-51d2-4780-95fe-150189141746}</UniqueIdentifier>
     </Filter>
-    <Filter Include="runtime\header">
+    <Filter Include="sdk">
+      <UniqueIdentifier>{6d9217a9-2d09-457b-920a-12d5568d82ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="engine">
+      <UniqueIdentifier>{283362de-bd5d-4be4-a17d-566a57a1e487}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="engine\header">
       <UniqueIdentifier>{7cd8ccfd-affb-4a70-9c50-67215fad9fc6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="runtime\source">
+    <Filter Include="engine\source">
       <UniqueIdentifier>{6d57c2f0-3638-4b5b-b916-d73c31c5f061}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -45,16 +48,34 @@
     <ClInclude Include="include\base.h">
       <Filter>base\header</Filter>
     </ClInclude>
+    <ClInclude Include="include\text.h">
+      <Filter>base\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\service.h">
+      <Filter>model\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\package.h">
+      <Filter>model\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine.h">
+      <Filter>engine\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\spiritium.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="include\task.h">
+      <Filter>model\header</Filter>
+    </ClInclude>
     <ClInclude Include="include\driver.h">
       <Filter>model\header</Filter>
     </ClInclude>
-    <ClInclude Include="include\runtime.h">
-      <Filter>runtime\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\driver_hub.h">
+    <ClInclude Include="include\locator.h">
       <Filter>model\header</Filter>
     </ClInclude>
-    <ClInclude Include="include\text.h">
+    <ClInclude Include="include\list.h">
+      <Filter>base\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\traits.h">
       <Filter>base\header</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,21 +86,21 @@
     <ClCompile Include="src\base.cpp">
       <Filter>base\source</Filter>
     </ClCompile>
-    <ClCompile Include="src\runtime.cpp">
-      <Filter>runtime\source</Filter>
+    <ClCompile Include="src\text.cpp">
+      <Filter>base\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine.cpp">
+      <Filter>engine\source</Filter>
     </ClCompile>
     <ClCompile Include="src\driver.cpp">
       <Filter>model\source</Filter>
     </ClCompile>
-    <ClCompile Include="src\text.cpp">
-      <Filter>base\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\driver_hub.cpp">
+    <ClCompile Include="src\service.cpp">
       <Filter>model\source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="res\runtime.rc">
+    <ResourceCompile Include="res\engine_cpp.rc">
       <Filter>.resource</Filter>
     </ResourceCompile>
   </ItemGroup>

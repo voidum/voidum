@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _SPIRITIUM_CONST_
+#define _SPIRITIUM_CONST_
 
 #include <string>
 #include <atomic>
@@ -31,30 +32,34 @@ namespace spiritium
 	typedef float real32;
 	typedef double real64;
 
+	typedef const std::string& ctext;
+
 	enum State
 	{
-		SF_STATE_IDLE = 0,
-		SF_STATE_QUEUE = 1,
-		SF_STATE_BUSY = 2,
-		SF_STATE_ROLLBACK = 3,
-		SF_STATE_PAUSE = 4
+		STATE_IDLE = 0,
+		STATE_QUEUE = 1,
+		STATE_BUSY = 2,
+		STATE_ROLLBACK = 3,
+		STATE_PAUSE = 4
 	}; //context state
 
 	enum ControlCode
 	{
-		SF_CTRL_NULL = 0,
-		SF_CTRL_PAUSE = 1,
-		SF_CTRL_RESUME = 2,
-		SF_CTRL_CANCEL = 3
+		CONTROL_NULL = 0,
+		CONTROL_PAUSE = 1,
+		CONTROL_RESUME = 2,
+		CONTROL_CANCEL = 3
 	}; //context control code
 
 	enum ReturnCode
 	{
-		SF_RETURN_ERROR = 0,
-		SF_RETURN_NORMAL = 1,
-		SF_RETURN_CANCEL = 2,
-		SF_RETURN_TERMINATE = 3,
-		SF_RETURN_NULLENTRY = 4,
-		SF_RETURN_UNHANDLED = 5
+		RETURN_ERROR = 0,
+		RETURN_NORMAL = 1,
+		RETURN_CANCEL = 2,
+		RETURN_TERMINATE = 3,
+		RETURN_NULLENTRY = 4,
+		RETURN_UNHANDLED = 5
 	}; //context return code
 }
+
+#endif

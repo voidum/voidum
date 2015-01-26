@@ -6,15 +6,11 @@ namespace spiritium
 
 	Driver::~Driver() { }
 
-	Driver* Driver::Load(std::string path)
+	Driver* Driver::Load(const std::string& runtime)
 	{
+		std::string path = "" + runtime;
 		std::wstring path_w = text::U8ToU16(path);
-		return Load(path_w);
-	}
-
-	Driver* Driver::Load(std::wstring path)
-	{
-		HMODULE module = LoadLibraryW(path.c_str());
+		HMODULE module = LoadLibraryW(path_w.c_str());
 		if (module == null)
 			return null;
 

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _SPIRITIUM_BASE_
+#define _SPIRITIUM_BASE_
+
 #pragma warning(disable:4275)
 #pragma warning(disable:4251)
 
@@ -30,3 +32,5 @@ namespace spiritium
 		target = null;
 	}
 }
+
+#endif

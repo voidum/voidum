@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "runtime", "core\runtime\runtime.vcxproj", "{303A7FC5-0DD7-409E-9B9D-F5461FE47EE2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "engine", "engine", "{7266DEE6-FF6F-4A17-A700-17778FFC6659}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{E4BC3B8B-33C2-46A3-8CA5-EC1787977801}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "driver", "driver", "{E1812448-77AA-4B5B-A9D5-B638E7747FB1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine_cpp", "engine\engine_cpp\engine_cpp.vcxproj", "{303A7FC5-0DD7-409E-9B9D-F5461FE47EE2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "invoker", "sample\invoker\invoker.vcxproj", "{82D06271-5217-4496-B1F9-EF3106B5509D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +23,16 @@ Global
 		{303A7FC5-0DD7-409E-9B9D-F5461FE47EE2}.Debug|Win32.Build.0 = Debug|Win32
 		{303A7FC5-0DD7-409E-9B9D-F5461FE47EE2}.Release|Win32.ActiveCfg = Release|Win32
 		{303A7FC5-0DD7-409E-9B9D-F5461FE47EE2}.Release|Win32.Build.0 = Release|Win32
+		{82D06271-5217-4496-B1F9-EF3106B5509D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{82D06271-5217-4496-B1F9-EF3106B5509D}.Debug|Win32.Build.0 = Debug|Win32
+		{82D06271-5217-4496-B1F9-EF3106B5509D}.Release|Win32.ActiveCfg = Release|Win32
+		{82D06271-5217-4496-B1F9-EF3106B5509D}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{303A7FC5-0DD7-409E-9B9D-F5461FE47EE2} = {7266DEE6-FF6F-4A17-A700-17778FFC6659}
+		{82D06271-5217-4496-B1F9-EF3106B5509D} = {E4BC3B8B-33C2-46A3-8CA5-EC1787977801}
 	EndGlobalSection
 EndGlobal
