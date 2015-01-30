@@ -1,39 +1,55 @@
 #ifndef _SPIRITIUM_DRIVER_
 #define _SPIRITIUM_DRIVER_
-#define _SPIRITIUM_TRAITS_DRIVER_
 
 #include "base.h"
 
 namespace spiritium
 {
-	class Bridge;
-
-#ifndef _SPIRITIUM_TRAITS_PACKAGE_
+	class Locator;
 	class Package;
-#endif
-
-#ifndef _SPIRITIUM_TRAITS_TASK_
 	class Task;
-#endif
 
 	//driver {base}
 	class SPIRITIUM_API Driver
 	{
 	public:
+		//load driver
+		static Driver* Load(const text& runtime);
+
+	public:
+		//find driver by runtime
+		static Driver* Find(const text& runtime);
+
+		//find driver by host mode
+		static Driver* Find(int host);
+
+		//count drivers
+		static int Count();
+
+		//disable all drivers
+		static void DisableAll();
+
+	public:
 		Driver();
 		virtual ~Driver();
 
 	public:
-		//load driver
-		static Driver* Load(const std::string& runtime);
+		//enable driver
+		void Enable();
+
+		//disable driver
+		void Disable();
+
+	public:
+		//get host mode
+		virtual int GetHostMode();
+
+		//create locator
+		virtual Locator* CreateLocator();
 
 	public:
 		//get runtime
-		virtual const std::string& GetRuntime() = 0;
-
-	public:
-		//create bridge
-		virtual Bridge* CreateBridge() = 0;
+		virtual const text& GetRuntime() = 0;
 
 		//create package
 		virtual Package* CreatePackage() = 0;

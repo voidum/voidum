@@ -66,11 +66,15 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -95,8 +99,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\base.h" />
-    <ClInclude Include="include\list.h" />
+    <ClInclude Include="include\context.h" />
+    <ClInclude Include="include\dataset.h" />
+    <ClInclude Include="include\error.h" />
     <ClInclude Include="include\locator.h" />
+    <ClInclude Include="include\memory.h" />
+    <ClInclude Include="include\setting.h" />
     <ClInclude Include="include\spiritium.h" />
     <ClInclude Include="include\package.h" />
     <ClInclude Include="include\const.h" />
@@ -105,16 +113,29 @@
     <ClInclude Include="include\service.h" />
     <ClInclude Include="include\task.h" />
     <ClInclude Include="include\text.h" />
-    <ClInclude Include="include\traits.h" />
+    <ClInclude Include="include\thread.h" />
+    <ClInclude Include="include\worker.h" />
+    <ClInclude Include="include\worker_cq.h" />
     <ClInclude Include="res\resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\base.cpp" />
+    <ClCompile Include="src\context.cpp" />
+    <ClCompile Include="src\dataset.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\driver.cpp" />
     <ClCompile Include="src\engine.cpp" />
+    <ClCompile Include="src\error.cpp" />
+    <ClCompile Include="src\locator.cpp" />
+    <ClCompile Include="src\memory.cpp" />
+    <ClCompile Include="src\package.cpp" />
     <ClCompile Include="src\service.cpp" />
+    <ClCompile Include="src\setting.cpp" />
+    <ClCompile Include="src\task.cpp" />
     <ClCompile Include="src\text.cpp" />
+    <ClCompile Include="src\thread.cpp" />
+    <ClCompile Include="src\worker.cpp" />
+    <ClCompile Include="src\worker_cq.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\engine_cpp.rc" />

@@ -5,31 +5,22 @@ using namespace spiritium;
 
 int main()
 {
-	Engine* engine = Engine::Instance();
+	auto engine = Engine::Instance();
+	auto worker = engine->GetWorker();
 	//engine->SetWorker(new UserDefinedWorker());
-	engine->Online();
 	
-	Driver* driver1 = Driver::Load("mscpp11");
-	//Driver* driver2 = new HostDriver();
-	//Driver* driver3 = new RemoteDriver();
-	engine->Drive(driver1);
-	//engine->Drive(driver2);
-	//engine->Drive(driver3);
+	Driver::Load("mscpp11")->Enable();
+	//auto driver_dummy = new DummyDriver();
+	//auto driver_remote = new RemoteDriver();
 
-	Locator locator("local", "test/test", "package");
-	Package* package = Package::Load(locator);
-	Service* service = package->GetService("");
+	auto package = Package::Load("local;");
+	auto service = package->GetService("");
 
-	Task* task = service->CreateTask();
-	Storage* storage = task->GetStorage();
+	auto task = service->CreateTask();
+	auto memory = task->GetMemory();
 	task->Start();
 	task->Join();
 
-	engine->Drive(driver1, false);
-	//engine->Driver(driver2, false);
-	//engine->Driver(driver3, false);
-
-	engine->Offline();
-	delete engine;
+	//driver_dummy->Disable();
 	return 0;
 }

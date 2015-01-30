@@ -2,8 +2,8 @@
 #define _SPIRITIUM_CONST_
 
 #include <string>
-#include <atomic>
 #include <mutex>
+
 #include "windows.h"
 
 #ifdef SPIRITIUM_EXPORTS
@@ -14,25 +14,23 @@
 
 namespace spiritium
 {
-	//define null
-	#define null 0
-
 	//define type alias
-	typedef void* raw;
-	typedef unsigned char byte;
+	using raw = void*;
+	using byte = unsigned char;
 
-	typedef signed char int8;
-	typedef short int16;
-	typedef int int32;
-	typedef long long int64;
-	typedef unsigned char uint8;
-	typedef unsigned short uint16;
-	typedef unsigned int uint32;
-	typedef unsigned long long uint64;
-	typedef float real32;
-	typedef double real64;
+	using int8 = signed char;
+	using int16 = short;
+	using int32 = int;
+	using int64 = long long;
+	using uint8 = unsigned char;
+	using uint16 = unsigned short;
+	using uint32 = unsigned int;
+	using uint64 = unsigned long long;
+	using real32 = float;
+	using real64 = double;
 
-	typedef const std::string& ctext;
+	using text = std::string;
+	using textw = std::wstring;
 
 	enum State
 	{
@@ -60,6 +58,9 @@ namespace spiritium
 		RETURN_NULLENTRY = 4,
 		RETURN_UNHANDLED = 5
 	}; //context return code
+
+	const text VERSION = "0.1.0.20150127";
+	const int HOST_LOCAL = 0;
 }
 
 #endif

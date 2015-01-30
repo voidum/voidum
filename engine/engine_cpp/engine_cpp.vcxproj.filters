@@ -25,17 +25,17 @@
     <Filter Include="model\source">
       <UniqueIdentifier>{bca42495-51d2-4780-95fe-150189141746}</UniqueIdentifier>
     </Filter>
-    <Filter Include="sdk">
-      <UniqueIdentifier>{6d9217a9-2d09-457b-920a-12d5568d82ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="engine">
-      <UniqueIdentifier>{283362de-bd5d-4be4-a17d-566a57a1e487}</UniqueIdentifier>
+      <UniqueIdentifier>{6ab7a400-873d-4e21-af82-b385934866af}</UniqueIdentifier>
     </Filter>
     <Filter Include="engine\header">
-      <UniqueIdentifier>{7cd8ccfd-affb-4a70-9c50-67215fad9fc6}</UniqueIdentifier>
+      <UniqueIdentifier>{19ea1a51-20a1-41c5-9432-36619040b02c}</UniqueIdentifier>
     </Filter>
     <Filter Include="engine\source">
-      <UniqueIdentifier>{6d57c2f0-3638-4b5b-b916-d73c31c5f061}</UniqueIdentifier>
+      <UniqueIdentifier>{08b1932d-b6e8-428a-992c-d92383e7324c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk">
+      <UniqueIdentifier>{6d9217a9-2d09-457b-920a-12d5568d82ee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,26 +57,44 @@
     <ClInclude Include="include\package.h">
       <Filter>model\header</Filter>
     </ClInclude>
-    <ClInclude Include="include\engine.h">
-      <Filter>engine\header</Filter>
-    </ClInclude>
     <ClInclude Include="include\spiritium.h">
       <Filter>sdk</Filter>
     </ClInclude>
-    <ClInclude Include="include\task.h">
+    <ClInclude Include="include\memory.h">
       <Filter>model\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\context.h">
+      <Filter>model\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\thread.h">
+      <Filter>engine\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\worker.h">
+      <Filter>engine\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine.h">
+      <Filter>engine\header</Filter>
     </ClInclude>
     <ClInclude Include="include\driver.h">
-      <Filter>model\header</Filter>
+      <Filter>engine\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\task.h">
+      <Filter>engine\header</Filter>
     </ClInclude>
     <ClInclude Include="include\locator.h">
+      <Filter>engine\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\setting.h">
+      <Filter>base\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\error.h">
       <Filter>model\header</Filter>
     </ClInclude>
-    <ClInclude Include="include\list.h">
-      <Filter>base\header</Filter>
+    <ClInclude Include="include\worker_cq.h">
+      <Filter>engine\header</Filter>
     </ClInclude>
-    <ClInclude Include="include\traits.h">
-      <Filter>base\header</Filter>
+    <ClInclude Include="include\dataset.h">
+      <Filter>model\header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -89,13 +107,46 @@
     <ClCompile Include="src\text.cpp">
       <Filter>base\source</Filter>
     </ClCompile>
+    <ClCompile Include="src\service.cpp">
+      <Filter>model\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\package.cpp">
+      <Filter>model\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\memory.cpp">
+      <Filter>model\source</Filter>
+    </ClCompile>
     <ClCompile Include="src\engine.cpp">
       <Filter>engine\source</Filter>
     </ClCompile>
     <ClCompile Include="src\driver.cpp">
+      <Filter>engine\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\task.cpp">
+      <Filter>engine\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\locator.cpp">
+      <Filter>engine\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\setting.cpp">
+      <Filter>base\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\error.cpp">
       <Filter>model\source</Filter>
     </ClCompile>
-    <ClCompile Include="src\service.cpp">
+    <ClCompile Include="src\worker.cpp">
+      <Filter>engine\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\worker_cq.cpp">
+      <Filter>engine\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\thread.cpp">
+      <Filter>engine\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\context.cpp">
+      <Filter>model\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dataset.cpp">
       <Filter>model\source</Filter>
     </ClCompile>
   </ItemGroup>

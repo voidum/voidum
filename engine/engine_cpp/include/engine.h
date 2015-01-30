@@ -2,62 +2,54 @@
 #define _SPIRITIUM_ENGINE_
 
 #include "base.h"
-#include "list.h"
+#include <atomic>
+#include <list>
 
 namespace spiritium
 {
 	class Driver;
 	class Package;
-	class Task;
+	class Setting;
 	class Worker;
 
 	//engine
 	class SPIRITIUM_API Engine : Uncopiable
 	{
-	private:
-		Engine();
-	public:
-		~Engine();
+		friend class Driver;
+		friend class Package;
+		friend class Setting;
+		friend class Worker;
 
 	private:
 		static std::atomic<Engine*> _Instance;
-		static std::mutex _SyncRoot;
+		static std::mutex _CtorRoot;
 
 	public:
 		static Engine* Instance();
 
 	private:
-		List<Driver>* _Drivers;
-		List<Package>* _Packages;
-		List<Task>* _Tasks;
+		std::mutex _SyncRoot;
+		std::list<Driver*> _Drivers;
+		std::list<Package*> _Packages;
 		Worker* _Worker;
+		Setting* _Setting;
+
+	private:
+		Engine();
+
+	public:
+		~Engine();
 
 	public:
 		//get spiritium version
 		const std::string& GetVersion();
 
 	public:
-		//online engine
-		void Online();
+		//start engine
+		void Start();
 
-		//offline engine
-		void Offline();
-
-		//enable/disable driver
-		void Drive(Driver* driver, bool enable = true);
-
-		//get driver by runtime
-		Driver* GetDriver(const std::string& runtime);
-
-		//get package by name
-		Package* GetPackage(const std::string& name);
-
-	public:
-		//get worker
-		Worker* GetWorker();
-
-		//set worker
-		void SetWorker(Worker* worker);
+		//stop engine
+		void Stop();
 	};
 }
 

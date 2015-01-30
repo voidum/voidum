@@ -6,34 +6,37 @@
 
 namespace spiritium
 {
+	class Driver;
 	class Locator;
 	class Service;
-
-#ifndef _SPIRITIUM_TRAITS_DRIVER_
-	class Driver;
-#endif;
 
 	//package
 	class SPIRITIUM_API Package : Uncopiable
 	{
 	public:
 		//load package
-		static Package* Load(const Locator& locator);
+		static Package* Load(const text& target, int host = HOST_LOCAL);
+
+		//find package
+		static Package* Find(const text& name);
+
+		//count packages
+		static int Count();
+
+		//detach all packages
+		static void DetachAll();
 
 	protected:
 		//package name
 		std::string _Name;
 
-		//package runtime
-		std::string _Runtime;
-
-		//package locator
-		std::string _Locator;
-
-		//services
+		//package services
 		std::list<Service*> _Services;
 
-		//driver
+		//locator for package
+		Locator* _Locator;
+
+		//driver for package
 		Driver* _Driver;
 
 	protected:
@@ -42,25 +45,29 @@ namespace spiritium
 	public:
 		virtual ~Package();
 
+	protected:
+		//parse define and update package
+		virtual bool Parse(const text& define);
+
 	public:
 		//get package name
-		ctext GetName();
+		const text& GetName();
 
-		//get package runtime
-		ctext GetRuntime();
+		//get service by name
+		Service* GetService(const text& name);
 
-		//get package locator
-		std::string GetLocator();
-
-		//get service by id
-		Service* GetService(ctext id);
+		//get locator
+		Locator* GetLocator();
 
 		//get driver
 		Driver* GetDriver();
 
-	protected:
-		//parse meta and update package
-		virtual void Parse(ctext meta) = 0;
+	public:
+		//attach package to engine
+		void Attach();
+
+		//detach package from engine
+		void Detach();
 
 	public:
 		//mount package

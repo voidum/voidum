@@ -1,8 +1,9 @@
 #ifndef _SPIRITIUM_BASE_
 #define _SPIRITIUM_BASE_
 
-#pragma warning(disable:4275)
+#pragma warning(disable:4172)
 #pragma warning(disable:4251)
+#pragma warning(disable:4275)
 
 #include "const.h"
 #include "text.h"
@@ -21,15 +22,20 @@ namespace spiritium
 		Uncopiable& operator=(const Uncopiable&);
 	};
 
-	//clear target
+	//clear object
 	template<typename T>
-	void Clear(T& target, bool array = false)
+	void ClearObject(T& target)
 	{
-		if (array)
-			delete[] target;
-		else
-			delete target;
-		target = null;
+		delete target;
+		target = nullptr;
+	}
+
+	//clear array
+	template<typename T>
+	void ClearArray(T& target)
+	{
+		delete[] target;
+		target = nullptr;
 	}
 }
 

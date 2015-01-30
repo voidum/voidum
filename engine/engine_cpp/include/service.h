@@ -12,22 +12,12 @@ namespace spiritium
 	//service
 	class SPIRITIUM_API Service
 	{
-	protected:
-		Service();
 	public:
-		virtual ~Service();
-
-	public:
-		static Service* Parse(std::string json);
+		static Service* Parse(const text& json);
 
 	protected:
-		Package* _Package;
-
-		//service id
-		std::string _Id;
-
-		//protect flag
-		bool _HasProtect;
+		//service name
+		std::string _Name;
 
 		//entry symbol
 		std::string _RollbackSym;
@@ -38,6 +28,19 @@ namespace spiritium
 		//data contract
 		std::string _Contract;
 
+		//protect flag
+		bool _Protect;
+
+	protected:
+		//parent
+		Package* _Package;
+
+	protected:
+		Service();
+
+	public:
+		virtual ~Service();
+
 	public:
 		//get package
 		Package* GetPackage();
@@ -45,20 +48,21 @@ namespace spiritium
 		//set package
 		void SetPackage(Package* package);
 
-		//get service id
-		std::string GetServiceId();
+	public:
+		//get service name
+		const text& GetName();
+
+		//get process symbol
+		const text& GetProcessSym();
+
+		//get rollback symbol
+		const text& GetRollbackSym();
+
+		//create dataset
+		Dataset* CreateDataset();
 
 		//get protect flag
 		bool HasProtect();
-
-		//get process symbol
-		std::string GetProcessSym();
-
-		//get rollback symbol
-		std::string GetRollbackSym();
-
-		//get dataset
-		Dataset* CreateDataset();
 
 	public:
 		//create task
