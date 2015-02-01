@@ -25,11 +25,11 @@ namespace spiritium
 
 	bool Task::Bind(Service* service)
 	{
+		_Service = service;
+		_HasProtect = service->HasProtect();
 		_Memory = new Memory();
-		_Memory->SetService(service);
 		_Memory->SetContext(new Context());
 		_Memory->SetDataset(service->CreateDataset());
-		_Memory->SetProtect(service->HasProtect());
 		return true;
 	}
 
@@ -40,7 +40,7 @@ namespace spiritium
 			context->SetControlCode(CONTROL_NULL);
 			context->SetReturnCode(RETURN_NULLENTRY);
 			context->SetState(STATE_BUSY);
-			if (_Memory->HasProtect())
+			if (_HasProtect)
 				OnSafeProcess();
 			else
 				OnProcess();
@@ -48,7 +48,7 @@ namespace spiritium
 		}
 		catch (Error*) {
 			context->SetState(STATE_ROLLBACK);
-			if (_Memory->HasProtect())
+			if (_HasProtect)
 				OnSafeRollback();
 			else
 				OnRollback();

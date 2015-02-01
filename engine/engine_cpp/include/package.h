@@ -20,12 +20,6 @@ namespace spiritium
 		//find package
 		static Package* Find(const text& name);
 
-		//count packages
-		static int Count();
-
-		//detach all packages
-		static void DetachAll();
-
 	protected:
 		//package name
 		std::string _Name;
@@ -61,13 +55,6 @@ namespace spiritium
 
 		//get driver
 		Driver* GetDriver();
-
-	public:
-		//attach package to engine
-		void Attach();
-
-		//detach package from engine
-		void Detach();
 
 	public:
 		//mount package

@@ -23,15 +23,26 @@ namespace spiritium
 		//find driver by host mode
 		static Driver* Find(int host);
 
-		//count drivers
-		static int Count();
-
-		//disable all drivers
-		static void DisableAll();
-
 	public:
 		Driver();
 		virtual ~Driver();
+
+	public:
+		//get host mode
+		virtual int GetHostMode();
+
+		//get runtime
+		virtual const text& GetRuntime() = 0;
+
+	public:
+		//create locator
+		virtual Locator* CreateLocator();
+
+		//create package
+		virtual Package* CreatePackage() = 0;
+
+		//create task
+		virtual Task* CreateTask() = 0;
 
 	public:
 		//enable driver
@@ -39,23 +50,6 @@ namespace spiritium
 
 		//disable driver
 		void Disable();
-
-	public:
-		//get host mode
-		virtual int GetHostMode();
-
-		//create locator
-		virtual Locator* CreateLocator();
-
-	public:
-		//get runtime
-		virtual const text& GetRuntime() = 0;
-
-		//create package
-		virtual Package* CreatePackage() = 0;
-
-		//create task
-		virtual Task* CreateTask() = 0;
 	};
 }
 

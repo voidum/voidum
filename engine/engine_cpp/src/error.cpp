@@ -3,6 +3,15 @@
 
 namespace spiritium
 {
+	void Error::Throw(int what)
+	{
+		auto error = new Error(what);
+		auto memory = Memory::Current();
+		if (memory != nullptr)
+			memory->SetError(error);
+		throw error;
+	}
+
 	Error::Error(int what)
 	{
 		_What = what;
@@ -13,14 +22,5 @@ namespace spiritium
 	int Error::What()
 	{
 		return _What;
-	}
-
-	void Error::Throw(int what)
-	{
-		auto error = new Error(what);
-		auto memory = Memory::Current();
-		if (memory != nullptr)
-			memory->SetError(error);
-		throw error;
 	}
 }

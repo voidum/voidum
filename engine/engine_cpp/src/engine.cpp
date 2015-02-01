@@ -30,8 +30,8 @@ namespace spiritium
 
 	Engine::~Engine()
 	{
-		Driver::DisableAll();
-		Package::DetachAll();
+		RemoveAllDrivers(true);
+		RemoveAllPackages(true);
 		ClearObject(_Worker);
 		ClearObject(_Setting);
 	}
@@ -41,13 +41,151 @@ namespace spiritium
 		return VERSION;
 	}
 
+	Setting* Engine::GetSetting()
+	{
+		return _Setting;
+	}
+
+	Worker* Engine::GetWorker()
+	{
+		return _Worker;
+	}
+
+	void Engine::SetWorker(Worker* worker)
+	{
+		_Worker = worker;
+	}
+
+	Driver* Engine::GetDriver(const text& runtime)
+	{
+		using iter = std::list<Driver*>::iterator;
+		std::lock_guard<std::mutex> lock(_SyncRoot);
+		for (iter i = _Drivers.begin(); i != _Drivers.end(); i++) {
+			auto temp = *i;
+			if (temp->GetRuntime() == runtime)
+				return temp;
+		}
+		return nullptr;
+	}
+
+	Driver* Engine::GetDriver(int host)
+	{
+		using iter = std::list<Driver*>::iterator;
+		std::lock_guard<std::mutex> lock(_SyncRoot);
+		for (iter i = _Drivers.begin(); i != _Drivers.end(); i++) {
+			auto temp = *i;
+			if (temp->GetHostMode() == host)
+				return temp;
+		}
+		return nullptr;
+	}
+
+	void Engine::AddDriver(Driver* driver)
+	{
+		using iter = std::list<Driver*>::iterator;
+		std::lock_guard<std::mutex> lock(_SyncRoot);
+		for (iter i = _Drivers.begin(); i != _Drivers.end(); i++) {
+			auto temp = *i;
+			if (temp == driver ||
+				temp->GetRuntime() == driver->GetRuntime())
+				return;
+		}
+		_Drivers.push_back(driver);
+	}
+
+	void Engine::RemoveDriver(Driver* driver, bool clear)
+	{
+		using iter = std::list<Driver*>::iterator;
+		_SyncRoot.lock();
+		for (iter i = _Drivers.begin(); i != _Drivers.end(); i++) {
+			auto temp = *i;
+			if (temp == driver ||
+				temp->GetRuntime() == driver->GetRuntime()) {
+				if (clear)
+					ClearObject(temp);
+				_Drivers.erase(i);
+				break;
+			}
+		}
+		_SyncRoot.unlock();
+	}
+
+	void Engine::RemoveAllDrivers(bool clear)
+	{
+		using iter = std::list<Driver*>::iterator;
+		_SyncRoot.lock();
+		if (clear) {
+			for (iter i = _Drivers.begin(); i != _Drivers.end(); i++)
+				ClearObject(*i);
+		}
+		_Drivers.clear();
+		_SyncRoot.unlock();
+	}
+
+	Package* Engine::GetPackage(const text& name)
+	{
+		using iter = std::list<Package*>::iterator;
+		std::lock_guard<std::mutex> lock(_SyncRoot);
+		for (iter i = _Packages.begin(); i != _Packages.end(); i++)
+		{
+			auto temp = *i;
+			if (temp->GetName() == name)
+				return temp;
+		}
+		return nullptr;
+	}
+
+	void Engine::AddPackage(Package* package)
+	{
+		using iter = std::list<Package*>::iterator;
+		std::lock_guard<std::mutex> lock(_SyncRoot);
+		for (iter i = _Packages.begin(); i != _Packages.end(); i++) {
+			auto temp = *i;
+			if (temp == package ||
+				temp->GetName() == package->GetName())
+				return;
+		}
+		_Packages.push_back(package);
+	}
+
+	void Engine::RemovePackage(Package* package, bool clear)
+	{
+		using iter = std::list<Package*>::iterator;
+		_SyncRoot.lock();
+		for (iter i = _Packages.begin(); i != _Packages.end(); i++) {
+			auto temp = *i;
+			if (temp == package ||
+				temp->GetName() == package->GetName()) {
+				if (clear)
+					ClearObject(temp);
+				_Packages.erase(i);
+				break;
+			}
+		}
+		_SyncRoot.unlock();
+	}
+
+	void Engine::RemoveAllPackages(bool clear)
+	{
+		using iter = std::list<Package*>::iterator;
+		_SyncRoot.lock();
+		if (clear) {
+			for (iter i = _Packages.begin(); i != _Packages.end(); i++)
+				ClearObject(*i);
+		}
+		_Packages.clear();
+		_SyncRoot.unlock();
+	}
+
 	void Engine::Start()
 	{
-		_Worker->Start();
+		if (_Worker != nullptr)
+			_Worker->Start();
 	}
 
 	void Engine::Stop()
 	{
-		_Worker->Stop();
+		if (_Worker != nullptr)
+			_Worker->Stop();
 	}
 }

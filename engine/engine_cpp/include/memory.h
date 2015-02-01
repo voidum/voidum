@@ -8,7 +8,6 @@ namespace spiritium
 	class Context;
 	class Dataset;
 	class Error;
-	class Service;
 
 	class SPIRITIUM_API Memory
 	{
@@ -16,45 +15,35 @@ namespace spiritium
 		//get current memory
 		static Memory* Current();
 
+	private:
+		Context* _Context;
+		Dataset* _Dataset;
+		Error* _Error;
+
 	public:
 		Memory();
 		~Memory();
 
-	private:
-		bool _HasProtect;
-		Context* _Context;
-		Dataset* _Dataset;
-		Error* _Error;
-		Service* _Service;
-
 	public:
-		//get protect flag
-		bool HasProtect();
-
 		//get context
 		Context* GetContext();
-
-		//get dataset
-		Dataset* GetDataset();
-
-		//get error
-		Error* GetError();
-
-	public:
-		//set protect flag
-		void SetProtect(bool protect);
 
 		//set context
 		void SetContext(Context* context);
 
+	public:
+		//get dataset
+		Dataset* GetDataset();
+
 		//set dataset
 		void SetDataset(Dataset* dataset);
 
+	public:
+		//get error
+		Error* GetError();
+
 		//set error
 		void SetError(Error* error);
-
-		//set service
-		void SetService(Service* service);
 	};
 }
 

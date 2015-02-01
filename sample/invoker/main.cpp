@@ -6,7 +6,7 @@ using namespace spiritium;
 int main()
 {
 	auto engine = Engine::Instance();
-	auto worker = engine->GetWorker();
+
 	//engine->SetWorker(new UserDefinedWorker());
 	
 	Driver::Load("mscpp11")->Enable();

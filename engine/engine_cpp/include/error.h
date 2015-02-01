@@ -8,6 +8,9 @@ namespace spiritium
 	//service error
 	class SPIRITIUM_API Error
 	{
+	public:
+		static void Throw(int what);
+
 	private:
 		int _What;
 
@@ -17,9 +20,6 @@ namespace spiritium
 
 	public:
 		int What();
-
-	public:
-		static void Throw(int what);
 	};
 }
 

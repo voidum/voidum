@@ -33,35 +33,8 @@ namespace spiritium
 
 	Package* Package::Find(const text& name)
 	{
-		using iter = std::list<Package*>::iterator;
 		auto engine = Engine::Instance();
-		auto packages = engine->_Packages;
-		std::lock_guard<std::mutex> lock(engine->_SyncRoot);
-		for (iter i = packages.begin(); i != packages.end(); i++)
-		{
-			auto package = *i;
-			if (package->GetName() == name)
-				return package;
-		}
-		return nullptr;
-	}
-
-	int Package::Count()
-	{
-		auto engine = Engine::Instance();
-		return engine->_Packages.size();
-	}
-
-	void Package::DetachAll()
-	{
-		using iter = std::list<Package*>::iterator;
-		auto engine = Engine::Instance();
-		auto packages = engine->_Packages;
-		engine->_SyncRoot.lock();
-		for (iter i = packages.begin(); i != packages.end(); i++)
-			ClearObject(*i);
-		packages.clear();
-		engine->_SyncRoot.unlock();
+		return engine->GetPackage(name);
 	}
 
 	Package::Package()
@@ -103,36 +76,5 @@ namespace spiritium
 	Driver* Package::GetDriver()
 	{
 		return _Driver;
-	}
-
-	void Package::Attach()
-	{
-		auto package = Find(_Name);
-		if (package != nullptr)
-		{
-			auto engine = Engine::Instance();
-			auto packages = engine->_Packages;
-			engine->_SyncRoot.lock();
-			packages.push_back(this);
-			engine->_SyncRoot.unlock();
-		}
-	}
-
-	void Package::Detach()
-	{
-		using iter = std::list<Package*>::iterator;
-		auto engine = Engine::Instance();
-		auto packages = engine->_Packages;
-		engine->_SyncRoot.lock();
-		for (iter i = packages.begin(); i != packages.end(); i++)
-		{
-			auto package = *i;
-			if (package->GetName() == _Name)
-			{
-				packages.erase(i);
-				break;
-			}
-		}
-		engine->_SyncRoot.unlock();
 	}
 }

@@ -59,7 +59,7 @@ namespace spiritium
 		RETURN_UNHANDLED = 5
 	}; //context return code
 
-	const text VERSION = "0.1.0.20150127";
+	const text VERSION = "0.1.0.20150201";
 	const int HOST_LOCAL = 0;
 }
 

@@ -13,7 +13,7 @@ namespace spiritium
 	class SPIRITIUM_API Service
 	{
 	public:
-		static Service* Parse(const text& json);
+		static Service* Parse(const text& define);
 
 	protected:
 		//service name
@@ -32,14 +32,14 @@ namespace spiritium
 		bool _Protect;
 
 	protected:
-		//parent
+		//container
 		Package* _Package;
 
 	protected:
 		Service();
 
 	public:
-		virtual ~Service();
+		~Service();
 
 	public:
 		//get package
@@ -58,11 +58,11 @@ namespace spiritium
 		//get rollback symbol
 		const text& GetRollbackSym();
 
-		//create dataset
-		Dataset* CreateDataset();
-
 		//get protect flag
 		bool HasProtect();
+
+		//create dataset
+		Dataset* CreateDataset();
 
 	public:
 		//create task

@@ -8,8 +8,6 @@ namespace spiritium
 	//engine setting
 	class SPIRITIUM_API Setting
 	{
-		friend class Engine;
-
 	public:
 		static Setting* Instance();
 
@@ -17,10 +15,8 @@ namespace spiritium
 		bool _IsSilent;
 		bool _IsRealTime;
 
-	private:
-		Setting();
-
 	public:
+		Setting();
 		~Setting();
 
 	public:

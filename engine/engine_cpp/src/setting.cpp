@@ -6,7 +6,7 @@ namespace spiritium
 	Setting* Setting::Instance()
 	{
 		auto engine = Engine::Instance();
-		return engine->_Setting;
+		return engine->GetSetting();
 	}
 
 	Setting::Setting() { }

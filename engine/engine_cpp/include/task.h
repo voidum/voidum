@@ -19,6 +19,8 @@ namespace spiritium
 
 	protected:
 		Memory* _Memory;
+		Service* _Service;
+		bool _HasProtect;
 
 	protected:
 		Task();

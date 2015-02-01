@@ -1,8 +1,7 @@
 #include "memory.h"
-#include "engine.h"
 #include "task.h"
 #include "context.h"
-//#include "dataset.h"
+#include "dataset.h"
 #include "error.h"
 
 namespace spiritium
@@ -22,13 +21,8 @@ namespace spiritium
 	Memory::~Memory()
 	{
 		ClearObject(_Context);
-		//ClearObject(_Dataset);
+		ClearObject(_Dataset);
 		ClearObject(_Error);
-	}
-
-	bool Memory::HasProtect()
-	{
-		return _HasProtect;
 	}
 
 	Context* Memory::GetContext()
@@ -36,24 +30,14 @@ namespace spiritium
 		return _Context;
 	}
 
-	Dataset* Memory::GetDataset()
-	{
-		return _Dataset;
-	}
-
-	Error* Memory::GetError()
-	{
-		return _Error;
-	}
-
-	void Memory::SetProtect(bool protect)
-	{
-		_HasProtect = protect;
-	}
-
 	void Memory::SetContext(Context* context)
 	{
 		_Context = context;
+	}
+
+	Dataset* Memory::GetDataset()
+	{
+		return _Dataset;
 	}
 
 	void Memory::SetDataset(Dataset* dataset)
@@ -61,13 +45,13 @@ namespace spiritium
 		_Dataset = dataset;
 	}
 
+	Error* Memory::GetError()
+	{
+		return _Error;
+	}
+
 	void Memory::SetError(Error* error)
 	{
 		_Error = error;
-	}
-
-	void Memory::SetService(Service* service)
-	{
-		_Service = service;
 	}
 }
