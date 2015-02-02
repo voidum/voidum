@@ -10,7 +10,7 @@ namespace voidum
 	{
 		auto locator = Locator::Create(target, host);
 		Driver* driver = nullptr;
-		if (host == HOST_LOCAL)
+		if (host == LOCAL_HOST)
 		{
 			auto runtime = locator->Request("runtime");
 			driver = Driver::Find(runtime);

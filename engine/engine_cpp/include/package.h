@@ -15,7 +15,7 @@ namespace voidum
 	{
 	public:
 		//load package
-		static Package* Load(const text& target, int host = HOST_LOCAL);
+		static Package* Load(const text& target, int host = LOCAL_HOST);
 
 		//find package
 		static Package* Find(const text& name);

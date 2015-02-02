@@ -39,7 +39,7 @@ namespace voidum
 
 	int Driver::GetHostMode()
 	{
-		return HOST_LOCAL;
+		return LOCAL_HOST;
 	}
 
 	Locator* Driver::CreateLocator()

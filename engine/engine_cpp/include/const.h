@@ -6,7 +6,7 @@
 
 #include "windows.h"
 
-#ifdef voidum_EXPORTS
+#ifdef VOIDUM_EXPORTS
 #define VOIDUM_API __declspec(dllexport)
 #else
 #define VOIDUM_API
@@ -59,8 +59,8 @@ namespace voidum
 		RETURN_UNHANDLED = 5
 	}; //context return code
 
-	const text VERSION = "0.1.0.20150201";
-	const int HOST_LOCAL = 0;
+	const text VERSION = "0.1.0.20150202";
+	const int LOCAL_HOST = 0;
 }
 
 #endif

@@ -10,7 +10,7 @@ namespace voidum
 		friend class Driver;
 
 	public:
-		static Locator* Create(const text& target, int host = HOST_LOCAL);
+		static Locator* Create(const text& target, int host = LOCAL_HOST);
 
 	protected:
 		std::string _Target;

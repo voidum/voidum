@@ -12,6 +12,7 @@ namespace voidum
 
 	Dataset::~Dataset() 
 	{
+		Clear();
 	}
 
 	Field* Dataset::GetField(int index)
@@ -38,5 +39,13 @@ namespace voidum
 	Dataset* Dataset::Copy()
 	{
 		return nullptr;
+	}
+
+	void Dataset::Clear()
+	{
+		using iter = std::list<Field*>::iterator;
+		for (iter i = _Fields.begin(); i != _Fields.end(); i++)
+			ClearObject(*i);
+		_Fields.clear();
 	}
 }

@@ -37,6 +37,9 @@ namespace voidum
 	public:
 		//copy dataset
 		Dataset* Copy();
+
+		//clear dataset
+		void Clear();
 	};
 }
 
