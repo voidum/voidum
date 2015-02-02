@@ -1,9 +1,9 @@
-#ifndef _SPIRITIUM_TEXT_
-#define _SPIRITIUM_TEXT_
+#ifndef _VOIDUM_TEXT_
+#define _VOIDUM_TEXT_
 
 #include "const.h"
 
-namespace spiritium
+namespace voidum
 {
 	//convert utf8 to utf16
 	std::wstring U8ToU16(const std::string& text);

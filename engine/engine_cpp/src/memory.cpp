@@ -4,7 +4,7 @@
 #include "dataset.h"
 #include "error.h"
 
-namespace spiritium
+namespace voidum
 {
 	Memory* Memory::Current()
 	{

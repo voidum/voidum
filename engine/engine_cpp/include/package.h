@@ -1,17 +1,17 @@
-#ifndef _SPIRITIUM_PACKAGE_
-#define _SPIRITIUM_PACKAGE_
+#ifndef _VOIDUM_PACKAGE_
+#define _VOIDUM_PACKAGE_
 
 #include "base.h"
 #include <list>
 
-namespace spiritium
+namespace voidum
 {
 	class Driver;
 	class Locator;
 	class Service;
 
 	//package
-	class SPIRITIUM_API Package : Uncopiable
+	class VOIDUM_API Package : Uncopiable
 	{
 	public:
 		//load package

@@ -1,7 +1,7 @@
-#include "spiritium.h"
-//#include "spiritium_ex.h"
+#include "voidum.h"
+//#include "voidum_ex.h"
 
-using namespace spiritium;
+using namespace voidum;
 
 int main()
 {

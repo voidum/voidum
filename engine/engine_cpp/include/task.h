@@ -1,14 +1,14 @@
-#ifndef _SPIRITIUM_TASK_
-#define _SPIRITIUM_TASK_
+#ifndef _VOIDUM_TASK_
+#define _VOIDUM_TASK_
 
 #include "base.h"
 
-namespace spiritium
+namespace voidum
 {
 	class Memory;
 	class Service;
 
-	class SPIRITIUM_API Task
+	class VOIDUM_API Task
 	{
 		friend class Worker;
 		friend class Thread;

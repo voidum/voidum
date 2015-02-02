@@ -1,7 +1,7 @@
 #include "worker.h"
 #include "engine.h"
 
-namespace spiritium
+namespace voidum
 {
 	Worker* Worker::Instance()
 	{

@@ -2,7 +2,7 @@
 #include "engine.h"
 #include "locator.h"
 
-namespace spiritium
+namespace voidum
 {
 	Driver* Driver::Load(const text& runtime)
 	{

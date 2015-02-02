@@ -1,11 +1,11 @@
-#ifndef _SPIRITIUM_WORKER_CQ_
-#define _SPIRITIUM_WORKER_CQ_
+#ifndef _VOIDUM_WORKER_CQ_
+#define _VOIDUM_WORKER_CQ_
 
 #include "worker.h"
 #include <list>
 #include <queue>
 
-namespace spiritium
+namespace voidum
 {
 	//concurrent queue worker
 	class WorkerCQ : public Worker

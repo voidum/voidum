@@ -1,16 +1,16 @@
-#ifndef _SPIRITIUM_DRIVER_
-#define _SPIRITIUM_DRIVER_
+#ifndef _VOIDUM_DRIVER_
+#define _VOIDUM_DRIVER_
 
 #include "base.h"
 
-namespace spiritium
+namespace voidum
 {
 	class Locator;
 	class Package;
 	class Task;
 
 	//driver {base}
-	class SPIRITIUM_API Driver
+	class VOIDUM_API Driver
 	{
 	public:
 		//load driver

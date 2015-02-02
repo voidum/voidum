@@ -2,7 +2,7 @@
 #include "task.h"
 #include "thread.h"
 
-namespace spiritium
+namespace voidum
 {
 	WorkerCQ::WorkerCQ()
 	{

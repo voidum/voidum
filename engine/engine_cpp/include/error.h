@@ -1,12 +1,12 @@
-#ifndef _SPIRITIUM_ERROR_
-#define _SPIRITIUM_ERROR_
+#ifndef _VOIDUM_ERROR_
+#define _VOIDUM_ERROR_
 
 #include "base.h"
 
-namespace spiritium
+namespace voidum
 {
 	//service error
-	class SPIRITIUM_API Error
+	class VOIDUM_API Error
 	{
 	public:
 		static void Throw(int what);

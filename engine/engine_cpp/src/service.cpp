@@ -1,6 +1,6 @@
 #include "service.h"
 
-namespace spiritium
+namespace voidum
 {
 	Service* Service::Parse(const text& define)
 	{

@@ -1,7 +1,7 @@
 #include "context.h"
 #include "memory.h"
 
-namespace spiritium
+namespace voidum
 {
 	Context::Context() 
 	{

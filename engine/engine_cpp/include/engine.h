@@ -1,11 +1,11 @@
-#ifndef _SPIRITIUM_ENGINE_
-#define _SPIRITIUM_ENGINE_
+#ifndef _VOIDUM_ENGINE_
+#define _VOIDUM_ENGINE_
 
 #include "base.h"
 #include <atomic>
 #include <list>
 
-namespace spiritium
+namespace voidum
 {
 	class Driver;
 	class Package;
@@ -13,7 +13,7 @@ namespace spiritium
 	class Worker;
 
 	//engine
-	class SPIRITIUM_API Engine : Uncopiable
+	class VOIDUM_API Engine : Uncopiable
 	{
 	private:
 		static std::atomic<Engine*> _Instance;

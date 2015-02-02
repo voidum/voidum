@@ -1,14 +1,14 @@
-#ifndef _SPIRITIUM_DATASET_
-#define _SPIRITIUM_DATASET_
+#ifndef _VOIDUM_DATASET_
+#define _VOIDUM_DATASET_
 
 #include "base.h"
 #include "field.h"
 #include <list>
 
-namespace spiritium
+namespace voidum
 {
 	//dataset
-	class SPIRITIUM_API Dataset
+	class VOIDUM_API Dataset
 	{
 	private:
 		std::list<Field*> _Fields;

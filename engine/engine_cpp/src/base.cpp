@@ -1,6 +1,6 @@
 #include "base.h"
 
-namespace spiritium
+namespace voidum
 {
 	Uncopiable::Uncopiable() { }
 

@@ -1,16 +1,16 @@
-#ifndef _SPIRITIUM_SERVICE_
-#define _SPIRITIUM_SERVICE_
+#ifndef _VOIDUM_SERVICE_
+#define _VOIDUM_SERVICE_
 
 #include "base.h"
 
-namespace spiritium
+namespace voidum
 {
 	class Dataset;
 	class Package;
 	class Task;
 
 	//service
-	class SPIRITIUM_API Service
+	class VOIDUM_API Service
 	{
 	public:
 		static Service* Parse(const text& define);

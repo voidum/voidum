@@ -1,9 +1,9 @@
-#ifndef _SPIRITIUM_THREAD_
-#define _SPIRITIUM_THREAD_
+#ifndef _VOIDUM_THREAD_
+#define _VOIDUM_THREAD_
 
 #include "base.h"
 
-namespace spiritium
+namespace voidum
 {
 	class Task;
 

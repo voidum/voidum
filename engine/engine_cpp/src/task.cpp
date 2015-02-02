@@ -5,7 +5,7 @@
 #include "setting.h"
 #include "worker.h"
 
-namespace spiritium
+namespace voidum
 {
 	Task* Task::Current()
 	{

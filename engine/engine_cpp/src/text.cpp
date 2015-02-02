@@ -1,7 +1,7 @@
 #include "text.h"
 #include <codecvt>
 
-namespace spiritium
+namespace voidum
 {
 	std::wstring U8ToU16(const std::string& text)
 	{

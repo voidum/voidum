@@ -1,18 +1,18 @@
-#ifndef _SPIRITIUM_CONST_
-#define _SPIRITIUM_CONST_
+#ifndef _VOIDUM_CONST_
+#define _VOIDUM_CONST_
 
 #include <string>
 #include <mutex>
 
 #include "windows.h"
 
-#ifdef SPIRITIUM_EXPORTS
-#define SPIRITIUM_API __declspec(dllexport)
+#ifdef voidum_EXPORTS
+#define VOIDUM_API __declspec(dllexport)
 #else
-#define SPIRITIUM_API
+#define VOIDUM_API
 #endif
 
-namespace spiritium
+namespace voidum
 {
 	//define type alias
 	using raw = void*;

@@ -1,11 +1,11 @@
-#ifndef _SPIRITIUM_FIELD_
-#define _SPIRITIUM_FIELD_
+#ifndef _VOIDUM_FIELD_
+#define _VOIDUM_FIELD_
 
 #include "base.h"
 
-namespace spiritium
+namespace voidum
 {
-	class SPIRITIUM_API Field
+	class VOIDUM_API Field
 	{
 	public:
 		static Field* Parse(const text& define);

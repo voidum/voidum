@@ -1,14 +1,14 @@
-#ifndef _SPIRITIUM_CONTEXT_
-#define _SPIRITIUM_CONTEXT_
+#ifndef _VOIDUM_CONTEXT_
+#define _VOIDUM_CONTEXT_
 
 #include "base.h"
 
-namespace spiritium
+namespace voidum
 {
 	class Task;
 
 	//routine context
-	class SPIRITIUM_API Context
+	class VOIDUM_API Context
 	{
 	private:
 		std::mutex _SyncRoot;

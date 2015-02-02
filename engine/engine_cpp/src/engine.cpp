@@ -4,7 +4,7 @@
 #include "setting.h"
 #include "worker_cq.h"
 
-namespace spiritium
+namespace voidum
 {
 	std::atomic<Engine*> Engine::_Instance{ nullptr };
 

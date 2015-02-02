@@ -1,5 +1,5 @@
-#ifndef _SPIRITIUM_BASE_
-#define _SPIRITIUM_BASE_
+#ifndef _VOIDUM_BASE_
+#define _VOIDUM_BASE_
 
 #pragma warning(disable:4172)
 #pragma warning(disable:4251)
@@ -8,7 +8,7 @@
 #include "const.h"
 #include "text.h"
 
-namespace spiritium
+namespace voidum
 {
 	//restrict copy
 	class Uncopiable

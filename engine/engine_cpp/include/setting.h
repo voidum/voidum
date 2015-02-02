@@ -1,12 +1,12 @@
-#ifndef _SPIRITIUM_SETTING_
-#define _SPIRITIUM_SETTING_
+#ifndef _VOIDUM_SETTING_
+#define _VOIDUM_SETTING_
 
 #include "base.h"
 
-namespace spiritium
+namespace voidum
 {
 	//engine setting
-	class SPIRITIUM_API Setting
+	class VOIDUM_API Setting
 	{
 	public:
 		static Setting* Instance();

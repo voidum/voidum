@@ -1,9 +1,9 @@
-#ifndef _SPIRITIUM_WORKER_
-#define _SPIRITIUM_WORKER_
+#ifndef _VOIDUM_WORKER_
+#define _VOIDUM_WORKER_
 
 #include "base.h"
 
-namespace spiritium
+namespace voidum
 {
 	class Engine;
 	class Thread;

@@ -1,7 +1,7 @@
 #include "setting.h"
 #include "engine.h"
 
-namespace spiritium
+namespace voidum
 {
 	Setting* Setting::Instance()
 	{

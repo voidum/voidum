@@ -1,9 +1,9 @@
-#ifndef _SPIRITIUM_LOCATOR_
-#define _SPIRITIUM_LOCATOR_
+#ifndef _VOIDUM_LOCATOR_
+#define _VOIDUM_LOCATOR_
 
 #include "base.h"
 
-namespace spiritium
+namespace voidum
 {
 	class Locator
 	{

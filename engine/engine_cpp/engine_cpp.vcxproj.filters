@@ -66,9 +66,6 @@
     <ClInclude Include="include\package.h">
       <Filter>model\header</Filter>
     </ClInclude>
-    <ClInclude Include="include\spiritium.h">
-      <Filter>.sdk</Filter>
-    </ClInclude>
     <ClInclude Include="include\thread.h">
       <Filter>worker\header</Filter>
     </ClInclude>
@@ -107,6 +104,9 @@
     </ClInclude>
     <ClInclude Include="include\field.h">
       <Filter>data\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\voidum.h">
+      <Filter>.sdk</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@
 #include "worker_cq.h"
 #include <process.h>
 
-namespace spiritium
+namespace voidum
 {
 	uint32 Thread::Handler(raw sender)
 	{

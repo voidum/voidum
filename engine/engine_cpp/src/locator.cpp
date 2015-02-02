@@ -1,7 +1,7 @@
 #include "locator.h"
 #include "driver.h"
 
-namespace spiritium
+namespace voidum
 {
 	Locator* Locator::Create(const text& target, int host)
 	{

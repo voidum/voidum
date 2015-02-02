@@ -1,6 +1,6 @@
 #include "dataset.h"
 
-namespace spiritium
+namespace voidum
 {
 	Dataset* Dataset::Parse(const text& define)
 	{

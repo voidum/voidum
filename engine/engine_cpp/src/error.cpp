@@ -1,7 +1,7 @@
 #include "error.h"
 #include "memory.h"
 
-namespace spiritium
+namespace voidum
 {
 	void Error::Throw(int what)
 	{

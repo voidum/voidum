@@ -4,7 +4,7 @@
 #include "locator.h"
 #include "service.h"
 
-namespace spiritium
+namespace voidum
 {
 	Package* Package::Load(const text& target, int host)
 	{

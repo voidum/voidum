@@ -1,15 +1,15 @@
-#ifndef _SPIRITIUM_MEMORY_
-#define _SPIRITIUM_MEMORY_
+#ifndef _VOIDUM_MEMORY_
+#define _VOIDUM_MEMORY_
 
 #include "base.h"
 
-namespace spiritium
+namespace voidum
 {
 	class Context;
 	class Dataset;
 	class Error;
 
-	class SPIRITIUM_API Memory
+	class VOIDUM_API Memory
 	{
 	public:
 		//get current memory
