@@ -25,15 +25,6 @@
     <Filter Include="model\source">
       <UniqueIdentifier>{bca42495-51d2-4780-95fe-150189141746}</UniqueIdentifier>
     </Filter>
-    <Filter Include="worker">
-      <UniqueIdentifier>{6ab7a400-873d-4e21-af82-b385934866af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="worker\header">
-      <UniqueIdentifier>{19ea1a51-20a1-41c5-9432-36619040b02c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="worker\source">
-      <UniqueIdentifier>{08b1932d-b6e8-428a-992c-d92383e7324c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="data">
       <UniqueIdentifier>{54b89a80-db03-42d2-890f-bf66fd170ff9}</UniqueIdentifier>
     </Filter>
@@ -45,6 +36,15 @@
     </Filter>
     <Filter Include=".sdk">
       <UniqueIdentifier>{6d9217a9-2d09-457b-920a-12d5568d82ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="local">
+      <UniqueIdentifier>{6ab7a400-873d-4e21-af82-b385934866af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="local\header">
+      <UniqueIdentifier>{19ea1a51-20a1-41c5-9432-36619040b02c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="local\source">
+      <UniqueIdentifier>{08b1932d-b6e8-428a-992c-d92383e7324c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,19 +67,13 @@
       <Filter>model\header</Filter>
     </ClInclude>
     <ClInclude Include="include\thread.h">
-      <Filter>worker\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\worker.h">
-      <Filter>worker\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\task.h">
-      <Filter>worker\header</Filter>
+      <Filter>local\header</Filter>
     </ClInclude>
     <ClInclude Include="include\setting.h">
       <Filter>base\header</Filter>
     </ClInclude>
     <ClInclude Include="include\worker_cq.h">
-      <Filter>worker\header</Filter>
+      <Filter>local\header</Filter>
     </ClInclude>
     <ClInclude Include="include\engine.h">
       <Filter>base\header</Filter>
@@ -108,6 +102,18 @@
     <ClInclude Include="include\voidum.h">
       <Filter>.sdk</Filter>
     </ClInclude>
+    <ClInclude Include="include\bridge.h">
+      <Filter>model\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\task.h">
+      <Filter>model\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\worker.h">
+      <Filter>model\header</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bridge_local.h">
+      <Filter>local\header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -125,20 +131,14 @@
     <ClCompile Include="src\package.cpp">
       <Filter>model\source</Filter>
     </ClCompile>
-    <ClCompile Include="src\task.cpp">
-      <Filter>worker\source</Filter>
-    </ClCompile>
     <ClCompile Include="src\setting.cpp">
       <Filter>base\source</Filter>
     </ClCompile>
-    <ClCompile Include="src\worker.cpp">
-      <Filter>worker\source</Filter>
-    </ClCompile>
     <ClCompile Include="src\worker_cq.cpp">
-      <Filter>worker\source</Filter>
+      <Filter>local\source</Filter>
     </ClCompile>
     <ClCompile Include="src\thread.cpp">
-      <Filter>worker\source</Filter>
+      <Filter>local\source</Filter>
     </ClCompile>
     <ClCompile Include="src\engine.cpp">
       <Filter>base\source</Filter>
@@ -163,6 +163,18 @@
     </ClCompile>
     <ClCompile Include="src\field.cpp">
       <Filter>data\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bridge.cpp">
+      <Filter>model\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\task.cpp">
+      <Filter>model\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\worker.cpp">
+      <Filter>model\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bridge_local.cpp">
+      <Filter>local\source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

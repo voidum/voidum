@@ -58,11 +58,11 @@ namespace voidum
 		//get rollback symbol
 		const text& GetRollbackSym();
 
+		//get dataset contract
+		const text& GetContract();
+
 		//get protect flag
 		bool HasProtect();
-
-		//create dataset
-		Dataset* CreateDataset();
 
 	public:
 		//create task

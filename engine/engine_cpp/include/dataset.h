@@ -10,6 +10,9 @@ namespace voidum
 	//dataset
 	class VOIDUM_API Dataset
 	{
+	public:
+		static Dataset* Parse(const text& define);
+
 	private:
 		std::list<Field*> _Fields;
 
@@ -18,10 +21,6 @@ namespace voidum
 
 	public:
 		~Dataset();
-
-	public:
-		//parse dataset from define
-		static Dataset* Parse(const text& define);
 
 	public:
 		//get field count

@@ -5,7 +5,6 @@
 
 namespace voidum
 {
-	class Locator;
 	class Package;
 	class Task;
 
@@ -20,24 +19,15 @@ namespace voidum
 		//find driver by runtime
 		static Driver* Find(const text& runtime);
 
-		//find driver by host mode
-		static Driver* Find(int host);
-
 	public:
 		Driver();
 		virtual ~Driver();
 
 	public:
-		//get host mode
-		virtual int GetHostMode();
-
 		//get runtime
 		virtual const text& GetRuntime() = 0;
 
 	public:
-		//create locator
-		virtual Locator* CreateLocator();
-
 		//create package
 		virtual Package* CreatePackage() = 0;
 

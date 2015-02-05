@@ -11,7 +11,7 @@ namespace voidum
 		text path = "" + runtime; 
 		textw path_w = U8ToU16(path);
 		HMODULE module = LoadLibraryW(path_w.c_str());
-		if (module != nullptr)
+		if (module == nullptr)
 			return nullptr;
 		using action = Driver*(*)();
 		action handler = (action)GetProcAddress(module, "GetDriverInstance");
@@ -27,25 +27,9 @@ namespace voidum
 		return engine->GetDriver(runtime);
 	}
 
-	Driver* Driver::Find(int host)
-	{
-		auto engine = Engine::Instance();
-		return engine->GetDriver(host);
-	}
-
 	Driver::Driver() { }
 
 	Driver::~Driver() { }
-
-	int Driver::GetHostMode()
-	{
-		return LOCAL_HOST;
-	}
-
-	Locator* Driver::CreateLocator()
-	{
-		return new Locator();
-	}
 
 	void Driver::Enable()
 	{

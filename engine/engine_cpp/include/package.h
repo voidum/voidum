@@ -6,8 +6,8 @@
 
 namespace voidum
 {
+	class Bridge;
 	class Driver;
-	class Locator;
 	class Service;
 
 	//package
@@ -15,23 +15,26 @@ namespace voidum
 	{
 	public:
 		//load package
-		static Package* Load(const text& target, int host = LOCAL_HOST);
+		static Package* Load(Bridge* bridge, const text& target);
 
 		//find package
 		static Package* Find(const text& name);
 
 	protected:
+		//package index
+		text _Index;
+
 		//package name
-		std::string _Name;
+		text _Name;
+
+		//package runtime
+		text _Runtime;
 
 		//package services
 		std::list<Service*> _Services;
 
-		//locator for package
-		Locator* _Locator;
-
-		//driver for package
-		Driver* _Driver;
+		//package host mode
+		int _Host;
 
 	protected:
 		Package();
@@ -44,17 +47,20 @@ namespace voidum
 		virtual bool Parse(const text& define);
 
 	public:
+		//get package index
+		const text& GetIndex();
+
 		//get package name
 		const text& GetName();
+
+		//get package runtime
+		const text& GetRuntime();
 
 		//get service by name
 		Service* GetService(const text& name);
 
-		//get locator
-		Locator* GetLocator();
-
-		//get driver
-		Driver* GetDriver();
+		//get host mode
+		int GetHostMode();
 
 	public:
 		//mount package

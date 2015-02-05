@@ -46,7 +46,7 @@ namespace voidum
 
 	protected:
 		//get task at current thread
-		virtual Task* GetCurrentTask();
+		virtual Task* CurrentTask();
 
 	protected:
 		//start task

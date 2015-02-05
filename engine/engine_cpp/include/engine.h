@@ -7,6 +7,7 @@
 
 namespace voidum
 {
+	class Bridge;
 	class Driver;
 	class Package;
 	class Setting;
@@ -24,6 +25,9 @@ namespace voidum
 
 	private:
 		std::mutex _SyncRoot;
+
+	private:
+		std::list<Bridge*> _Bridges;
 		std::list<Driver*> _Drivers;
 		std::list<Package*> _Packages;
 		Worker* _Worker;
@@ -51,11 +55,21 @@ namespace voidum
 		void SetWorker(Worker* worker);
 
 	public:
+		//get bridge by host mode
+		Bridge* GetBridge(int host);
+
+		//add bridge
+		void AddBridge(Bridge* bridge);
+
+		//remove bridge
+		void RemoveBridge(Bridge* bridge, bool clear = false);
+
+		//remove all bridges
+		void RemoveAllBridges(bool clear = false);
+
+	public:
 		//get driver by runtime
 		Driver* GetDriver(const text& runtime);
-
-		//get driver by host mode
-		Driver* GetDriver(int host);
 
 		//add driver
 		void AddDriver(Driver* driver);

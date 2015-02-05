@@ -7,7 +7,7 @@ namespace voidum
 {
 	class Task;
 
-	//routine context
+	//context for task
 	class VOIDUM_API Context
 	{
 	private:
@@ -26,45 +26,48 @@ namespace voidum
 		~Context();
 
 	public:
-		//set state
-		void SetState(uint8 value);
-
-		//set return code
-		void SetReturnCode(uint8 value);
-
-		//set control code
-		void SetControlCode(uint8 value);
-
-		//set progress
-		void SetProgress(float value);
-
-		//set key frame
-		void SetKeyFrame(const text& value);
-
-		//switch between pause and resume
-		void SwitchHold();
-
-		//switch between front and back
-		void SwitchBusy();
-
-	public:
 		//get current state
 		uint8 GetCurrentState();
 
 		//get last state
 		uint8 GetLastState();
 
-		//get return code
-		uint8 GetReturnCode();
+		//set state
+		void SetState(uint8 value);
 
+	public:
 		//get control code
 		uint8 GetControlCode();
 
+		//set control code
+		void SetControlCode(uint8 value);
+
+	public:
+		//get return code
+		uint8 GetReturnCode();
+
+		//set return code
+		void SetReturnCode(uint8 value);
+
+	public:
 		//get progress
 		float GetProgress();
 
+		//set progress
+		void SetProgress(float value);
+
 		//get key frame
 		const text& GetKeyFrame();
+
+		//set key frame
+		void SetKeyFrame(const text& value);
+
+	public:
+		//switch pause and resume
+		void SwitchHold();
+
+		//try to pause and wait for resume
+		void TryHold();
 	};
 }
 

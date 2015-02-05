@@ -30,7 +30,7 @@ namespace voidum
 
 	protected:
 		//get task at current thread
-		virtual Task* GetCurrentTask() = 0;
+		virtual Task* CurrentTask() = 0;
 
 	protected:
 		//start task

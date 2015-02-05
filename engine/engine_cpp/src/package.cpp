@@ -1,33 +1,21 @@
 #include "package.h"
 #include "engine.h"
+#include "bridge.h"
 #include "driver.h"
 #include "locator.h"
 #include "service.h"
 
 namespace voidum
 {
-	Package* Package::Load(const text& target, int host)
+	Package* Package::Load(Bridge* bridge, const text& source)
 	{
-		auto locator = Locator::Create(target, host);
-		Driver* driver = nullptr;
-		if (host == LOCAL_HOST)
-		{
-			auto runtime = locator->Request("runtime");
-			driver = Driver::Find(runtime);
-		}
-		else
-		{
-			//driver proxy for special host mode
-			driver = Driver::Find(host);
-		}
-		auto define = locator->Request("define");
+		auto driver = bridge->Match(source);
 		auto package = driver->CreatePackage();
+		auto locator = bridge->GetLocator(TARGET_PACKAGE, source);
+		auto define = locator->Request("define");
 		if (!package->Parse(define))
 			ClearObject(package);
-		package->_Locator = locator;
-		package->_Driver = driver;
-
-		//push??
+		package->_Host = bridge->GetHostMode();
 		return package;
 	}
 
@@ -51,9 +39,19 @@ namespace voidum
 		return false;
 	}
 
+	const text& Package::GetIndex()
+	{
+		return _Index;
+	}
+
 	const text& Package::GetName()
 	{
 		return _Name;
+	}
+
+	const text& Package::GetRuntime()
+	{
+		return _Runtime;
 	}
 
 	Service* Package::GetService(const text& name)
@@ -68,13 +66,8 @@ namespace voidum
 		return nullptr;
 	}
 
-	Locator* Package::GetLocator()
+	int Package::GetHostMode()
 	{
-		return _Locator;
-	}
-
-	Driver* Package::GetDriver()
-	{
-		return _Driver;
+		return _Host;
 	}
 }

@@ -5,6 +5,7 @@
 
 namespace voidum
 {
+	class Bridge;
 	class Memory;
 	class Service;
 
@@ -18,9 +19,10 @@ namespace voidum
 		static Task* Current();
 
 	protected:
+		text _Index;
 		Memory* _Memory;
-		Service* _Service;
 		bool _HasProtect;
+		Service* _Service;
 
 	protected:
 		Task();
@@ -68,6 +70,9 @@ namespace voidum
 	public:
 		//wait for task return
 		void Join();
+
+		//sync memory
+		void Sync();
 	};
 }
 

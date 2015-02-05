@@ -1,5 +1,8 @@
 #include "engine.h"
+#include "bridge_local.h"
 #include "driver.h"
 #include "package.h"
 #include "service.h"
 #include "task.h"
+#include "memory.h"
+#include "dataset.h"

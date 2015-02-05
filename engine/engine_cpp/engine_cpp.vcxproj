@@ -66,14 +66,15 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
-      <BrowseInformation>false</BrowseInformation>
+      <BrowseInformation>true</BrowseInformation>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Bscmake>
-      <PreserveSbr>true</PreserveSbr>
+      <PreserveSbr>false</PreserveSbr>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -99,10 +100,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\base.h" />
+    <ClInclude Include="include\bridge.h" />
     <ClInclude Include="include\context.h" />
     <ClInclude Include="include\dataset.h" />
     <ClInclude Include="include\error.h" />
     <ClInclude Include="include\field.h" />
+    <ClInclude Include="include\bridge_local.h" />
     <ClInclude Include="include\locator.h" />
     <ClInclude Include="include\memory.h" />
     <ClInclude Include="include\setting.h" />
@@ -121,6 +124,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\base.cpp" />
+    <ClCompile Include="src\bridge.cpp" />
+    <ClCompile Include="src\bridge_local.cpp" />
     <ClCompile Include="src\context.cpp" />
     <ClCompile Include="src\dataset.cpp" />
     <ClCompile Include="src\dllmain.cpp" />

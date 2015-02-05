@@ -1,6 +1,10 @@
 #include "task.h"
-#include "context.h"
 #include "memory.h"
+#include "dataset.h"
+#include "context.h"
+#include "locator.h"
+#include "bridge.h"
+#include "package.h"
 #include "service.h"
 #include "setting.h"
 #include "worker.h"
@@ -10,7 +14,7 @@ namespace voidum
 	Task* Task::Current()
 	{
 		auto worker = Worker::Instance();
-		return worker->GetCurrentTask();
+		return worker->CurrentTask();
 	}
 
 	Task::Task()
@@ -29,7 +33,8 @@ namespace voidum
 		_HasProtect = service->HasProtect();
 		_Memory = new Memory();
 		_Memory->SetContext(new Context());
-		_Memory->SetDataset(service->CreateDataset());
+		_Memory->SetDataset(
+			Dataset::Parse(service->GetContract()));
 		return true;
 	}
 
@@ -64,7 +69,7 @@ namespace voidum
 		}
 		__except (EXCEPTION_EXECUTE_HANDLER) {
 			if (_Memory != nullptr) {
-				Context* context = _Memory->GetContext();
+				auto context = _Memory->GetContext();
 				if (context != nullptr) {
 					context->SetReturnCode(RETURN_UNHANDLED);
 				}
@@ -80,7 +85,7 @@ namespace voidum
 		}
 		__except (EXCEPTION_EXECUTE_HANDLER) {
 			if (_Memory != nullptr) {
-				Context* context = _Memory->GetContext();
+				auto context = _Memory->GetContext();
 				if (context != nullptr) {
 					context->SetReturnCode(RETURN_UNHANDLED);
 				}
@@ -96,6 +101,10 @@ namespace voidum
 
 	void Task::Start()
 	{
+		auto bridge = Bridge::Find(_Service->GetPackage()->GetHostMode());
+		auto locator = bridge->GetLocator(TARGET_TASK, _Index);
+		locator->Request("start");
+
 		auto worker = Worker::Instance();
 		auto context = _Memory->GetContext();
 		context->SetState(STATE_QUEUE);
@@ -104,6 +113,10 @@ namespace voidum
 
 	void Task::Stop(uint32 wait)
 	{
+		auto bridge = Bridge::Find(_Service->GetPackage()->GetHostMode());
+		auto locator = bridge->GetLocator(TARGET_TASK, _Index);
+		locator->Request("stop");
+
 		auto worker = Worker::Instance();
 		auto context = _Memory->GetContext();
 		if (wait != 0)
@@ -125,6 +138,10 @@ namespace voidum
 
 	void Task::Pause(uint32 wait)
 	{
+		auto bridge = Bridge::Find(_Service->GetPackage()->GetHostMode());
+		auto locator = bridge->GetLocator(TARGET_TASK, _Index);
+		locator->Request("pause");
+
 		auto worker = Worker::Instance();
 		auto context = _Memory->GetContext();
 		if (wait != 0)
@@ -146,6 +163,10 @@ namespace voidum
 
 	void Task::Resume()
 	{
+		auto bridge = Bridge::Find(_Service->GetPackage()->GetHostMode());
+		auto locator = bridge->GetLocator(TARGET_TASK, _Index);
+		locator->Request("resume");
+
 		auto worker = Worker::Instance();
 		if (!worker->ResumeTask(this))
 		{
@@ -156,10 +177,18 @@ namespace voidum
 
 	void Task::Join()
 	{
+		auto bridge = Bridge::Find(_Service->GetPackage()->GetHostMode());
+		auto locator = bridge->GetLocator(TARGET_TASK, _Index);
+		locator->Request("join");
+
 		auto setting = Setting::Instance();
 		int span = setting->IsRealTime() ? 0 : 50;
 		auto context = _Memory->GetContext();
 		while (context->GetCurrentState() != STATE_IDLE)
 			Sleep(span);
+	}
+
+	void Task::Sync()
+	{
 	}
 }

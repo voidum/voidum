@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "engine", "engine", "{7266DEE6-FF6F-4A17-A700-17778FFC6659}"
 EndProject
@@ -12,6 +12,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "engine_cpp", "engine\engine_cpp\engine_cpp.vcxproj", "{303A7FC5-0DD7-409E-9B9D-F5461FE47EE2}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "invoker", "sample\invoker\invoker.vcxproj", "{82D06271-5217-4496-B1F9-EF3106B5509D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{303A7FC5-0DD7-409E-9B9D-F5461FE47EE2} = {303A7FC5-0DD7-409E-9B9D-F5461FE47EE2}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

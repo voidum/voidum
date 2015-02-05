@@ -1,4 +1,5 @@
 #include "engine.h"
+#include "bridge.h"
 #include "driver.h"
 #include "package.h"
 #include "setting.h"
@@ -53,7 +54,67 @@ namespace voidum
 
 	void Engine::SetWorker(Worker* worker)
 	{
+		if (worker == nullptr)
+			return;
 		_Worker = worker;
+	}
+
+	Bridge* Engine::GetBridge(int host)
+	{
+		using iter = std::list<Bridge*>::iterator;
+		std::lock_guard<std::mutex> lock(_SyncRoot);
+		for (iter i = _Bridges.begin(); i != _Bridges.end(); i++) {
+			auto temp = *i;
+			if (temp->GetHostMode() == host)
+				return temp;
+		}
+		return nullptr;
+	}
+
+	void Engine::AddBridge(Bridge* bridge)
+	{
+		if (bridge == nullptr)
+			return;
+		using iter = std::list<Bridge*>::iterator;
+		std::lock_guard<std::mutex> lock(_SyncRoot);
+		for (iter i = _Bridges.begin(); i != _Bridges.end(); i++) {
+			auto temp = *i;
+			if (temp == bridge ||
+				temp->GetHostMode() == bridge->GetHostMode())
+				return;
+		}
+		_Bridges.push_back(bridge);
+	}
+
+	void Engine::RemoveBridge(Bridge* bridge, bool clear)
+	{
+		if (bridge == nullptr)
+			return;
+		using iter = std::list<Bridge*>::iterator;
+		_SyncRoot.lock();
+		for (iter i = _Bridges.begin(); i != _Bridges.end(); i++) {
+			auto temp = *i;
+			if (temp == bridge ||
+				temp->GetHostMode() == bridge->GetHostMode()) {
+				if (clear)
+					ClearObject(temp);
+				_Bridges.erase(i);
+				break;
+			}
+		}
+		_SyncRoot.unlock();
+	}
+
+	void Engine::RemoveAllBridges(bool clear)
+	{
+		using iter = std::list<Bridge*>::iterator;
+		_SyncRoot.lock();
+		if (clear) {
+			for (iter i = _Bridges.begin(); i != _Bridges.end(); i++)
+				ClearObject(*i);
+		}
+		_Bridges.clear();
+		_SyncRoot.unlock();
 	}
 
 	Driver* Engine::GetDriver(const text& runtime)
@@ -68,20 +129,10 @@ namespace voidum
 		return nullptr;
 	}
 
-	Driver* Engine::GetDriver(int host)
-	{
-		using iter = std::list<Driver*>::iterator;
-		std::lock_guard<std::mutex> lock(_SyncRoot);
-		for (iter i = _Drivers.begin(); i != _Drivers.end(); i++) {
-			auto temp = *i;
-			if (temp->GetHostMode() == host)
-				return temp;
-		}
-		return nullptr;
-	}
-
 	void Engine::AddDriver(Driver* driver)
 	{
+		if (driver == nullptr)
+			return;
 		using iter = std::list<Driver*>::iterator;
 		std::lock_guard<std::mutex> lock(_SyncRoot);
 		for (iter i = _Drivers.begin(); i != _Drivers.end(); i++) {
@@ -95,6 +146,8 @@ namespace voidum
 
 	void Engine::RemoveDriver(Driver* driver, bool clear)
 	{
+		if (driver == nullptr)
+			return;
 		using iter = std::list<Driver*>::iterator;
 		_SyncRoot.lock();
 		for (iter i = _Drivers.begin(); i != _Drivers.end(); i++) {
@@ -137,6 +190,8 @@ namespace voidum
 
 	void Engine::AddPackage(Package* package)
 	{
+		if (package == nullptr)
+			return;
 		using iter = std::list<Package*>::iterator;
 		std::lock_guard<std::mutex> lock(_SyncRoot);
 		for (iter i = _Packages.begin(); i != _Packages.end(); i++) {
@@ -150,6 +205,8 @@ namespace voidum
 
 	void Engine::RemovePackage(Package* package, bool clear)
 	{
+		if (package == nullptr)
+			return;
 		using iter = std::list<Package*>::iterator;
 		_SyncRoot.lock();
 		for (iter i = _Packages.begin(); i != _Packages.end(); i++) {

@@ -32,6 +32,17 @@ namespace voidum
 	using text = std::string;
 	using textw = std::wstring;
 
+	enum HostMode
+	{
+		HOST_LOCAL = 0
+	}; //host mode
+
+	enum Target
+	{
+		TARGET_PACKAGE = 0,
+		TARGET_TASK = 1
+	}; //host syncable target
+
 	enum State
 	{
 		STATE_IDLE = 0,
@@ -60,7 +71,6 @@ namespace voidum
 	}; //context return code
 
 	const text VERSION = "0.1.0.20150202";
-	const int LOCAL_HOST = 0;
 }
 
 #endif

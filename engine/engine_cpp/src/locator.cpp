@@ -1,25 +1,29 @@
 #include "locator.h"
-#include "driver.h"
 
 namespace voidum
 {
-	Locator* Locator::Create(const text& target, int host)
-	{
-		auto driver = Driver::Find(host);
-		if (driver == nullptr)
-			return nullptr;
-		auto locator = driver->CreateLocator();
-		locator->_Target = target;
-		return locator;
-	}
-
 	Locator::Locator() { }
 
 	Locator::~Locator() { }
 
-	const text& Locator::GetTarget()
+	int Locator::GetTarget()
 	{
 		return _Target;
+	}
+
+	void Locator::SetTarget(int target)
+	{
+		_Target = target;
+	}
+
+	const text& Locator::GetSource()
+	{
+		return _Source;
+	}
+
+	void Locator::SetSource(const text& source)
+	{
+		_Source = source;
 	}
 
 	const text& Locator::Request(const text& message)

@@ -7,13 +7,10 @@ namespace voidum
 {
 	class Locator
 	{
-		friend class Driver;
-
-	public:
-		static Locator* Create(const text& target, int host = LOCAL_HOST);
-
 	protected:
-		std::string _Target;
+		int _Target;
+
+		std::string _Source;
 
 	protected:
 		Locator();
@@ -23,11 +20,21 @@ namespace voidum
 
 	public:
 		//get target
-		const text& GetTarget();
+		int GetTarget();
+
+		//set target
+		void SetTarget(int target);
 
 	public:
-		//request target with message
-		virtual const text& Request(const text& message);
+		//get source
+		const text& GetSource();
+
+		//set source
+		void SetSource(const text& source);
+
+	public:
+		//request message
+		virtual const text& Request(const text& message) = 0;
 	};
 }
 

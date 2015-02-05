@@ -84,7 +84,7 @@ namespace voidum
 		_SyncRoot.unlock();
 	}
 
-	Task* WorkerCQ::GetCurrentTask()
+	Task* WorkerCQ::CurrentTask()
 	{
 		using iter = std::list<Thread*>::iterator;
 		HANDLE handle = GetCurrentThread();
