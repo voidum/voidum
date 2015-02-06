@@ -55,8 +55,8 @@ namespace voidum
 		void SetWorker(Worker* worker);
 
 	public:
-		//get bridge by host mode
-		Bridge* GetBridge(int host);
+		//get bridge by name
+		Bridge* GetBridge(const text& name);
 
 		//add bridge
 		void AddBridge(Bridge* bridge);

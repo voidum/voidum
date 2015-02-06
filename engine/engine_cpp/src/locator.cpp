@@ -25,10 +25,4 @@ namespace voidum
 	{
 		_Source = source;
 	}
-
-	const text& Locator::Request(const text& message)
-	{
-		message;
-		return "";
-	}
 }

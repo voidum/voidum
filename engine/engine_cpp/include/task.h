@@ -15,6 +15,9 @@ namespace voidum
 		friend class Thread;
 
 	public:
+		//create task for service
+		static Task* Create(Service* service);
+
 		//get task at current thread
 		static Task* Current();
 

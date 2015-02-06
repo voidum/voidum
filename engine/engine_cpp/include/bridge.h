@@ -12,18 +12,22 @@ namespace voidum
 	class VOIDUM_API Bridge
 	{
 	public:
-		//find bridge by host mode
-		static Bridge* Find(int host);
+		//find bridge by name
+		static Bridge* Find(const text& name);
 
 	protected:
+		text _Name;
 		text _EndPoint;
 		std::list<Locator*> _Locators;
 
 	public:
-		Bridge();
+		Bridge(const text& name);
 		virtual ~Bridge();
 
 	public:
+		//get alias name
+		const text& GetName();
+
 		//get end point
 		const text& GetEndPoint();
 

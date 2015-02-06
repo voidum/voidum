@@ -4,6 +4,7 @@
 #include "context.h"
 #include "locator.h"
 #include "bridge.h"
+#include "driver.h"
 #include "package.h"
 #include "service.h"
 #include "setting.h"
@@ -11,6 +12,15 @@
 
 namespace voidum
 {
+	Task* Task::Create(Service* service)
+	{
+		auto package = service->GetPackage();
+		auto driver = package->GetDriver();
+		auto task = driver->CreateTask();
+		task->Bind(service);
+		return task;
+	}
+
 	Task* Task::Current()
 	{
 		auto worker = Worker::Instance();
@@ -101,7 +111,7 @@ namespace voidum
 
 	void Task::Start()
 	{
-		auto bridge = Bridge::Find(_Service->GetPackage()->GetHostMode());
+		auto bridge = _Service->GetPackage()->GetBridge();
 		auto locator = bridge->GetLocator(TARGET_TASK, _Index);
 		locator->Request("start");
 
@@ -113,7 +123,7 @@ namespace voidum
 
 	void Task::Stop(uint32 wait)
 	{
-		auto bridge = Bridge::Find(_Service->GetPackage()->GetHostMode());
+		auto bridge = _Service->GetPackage()->GetBridge();
 		auto locator = bridge->GetLocator(TARGET_TASK, _Index);
 		locator->Request("stop");
 
@@ -138,7 +148,7 @@ namespace voidum
 
 	void Task::Pause(uint32 wait)
 	{
-		auto bridge = Bridge::Find(_Service->GetPackage()->GetHostMode());
+		auto bridge = _Service->GetPackage()->GetBridge();
 		auto locator = bridge->GetLocator(TARGET_TASK, _Index);
 		locator->Request("pause");
 
@@ -163,7 +173,7 @@ namespace voidum
 
 	void Task::Resume()
 	{
-		auto bridge = Bridge::Find(_Service->GetPackage()->GetHostMode());
+		auto bridge = _Service->GetPackage()->GetBridge();
 		auto locator = bridge->GetLocator(TARGET_TASK, _Index);
 		locator->Request("resume");
 
@@ -177,7 +187,7 @@ namespace voidum
 
 	void Task::Join()
 	{
-		auto bridge = Bridge::Find(_Service->GetPackage()->GetHostMode());
+		auto bridge = _Service->GetPackage()->GetBridge();
 		auto locator = bridge->GetLocator(TARGET_TASK, _Index);
 		locator->Request("join");
 

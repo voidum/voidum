@@ -12,26 +12,26 @@ int main()
 
 	Driver::Load("mscpp11")->Enable();
 
-	auto local_bridge = new LocalBridge();
-	local_bridge->Connect("E:\\");
-	local_bridge->Enable();
-	//auto dummy_bridge = new DummyBridge();
-	//dummy_bridge->Enable();
-	//auto dummy_bridge = new RemoteBridge();
-	//remote_bridge->Enable();
+	auto bridge1 = new LocalBridge("local1");
+	bridge1->Connect("E:\\");
+	bridge1->Enable();
+	//auto bridge2 = new DummyBridge();
+	//bridge2->Enable();
+	//auto bridge3 = new RemoteBridge();
+	//bridge3->Enable();
 
-	auto package = Package::Load(local_bridge, "sample");
+	auto package = Package::Load(bridge1, "sample");
 	auto service = package->GetService("");
 
-	auto task = service->CreateTask();
+	auto task = Task::Create(service);
 	auto memory = task->GetMemory();
 	auto dataset = memory->GetDataset();
 	dataset->Count();
 	task->Start();
 	task->Join();
 
-	//dummy_bridge->Disable();
-	//dummy_bridge->Disable();
+	//bridge2->Disable();
+	//bridge3->Disable();
 	delete engine;
 	return 0;
 }

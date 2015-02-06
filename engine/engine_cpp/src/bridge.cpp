@@ -4,15 +4,23 @@
 
 namespace voidum
 {
-	Bridge* Bridge::Find(int host)
+	Bridge* Bridge::Find(const text& name)
 	{
 		auto engine = Engine::Instance();
-		return engine->GetBridge(host);
+		return engine->GetBridge(name);
 	}
 
-	Bridge::Bridge() { }
+	Bridge::Bridge(const text& name)
+	{
+		_Name = name;
+	}
 	
 	Bridge::~Bridge() { }
+
+	const text& Bridge::GetName()
+	{
+		return _Name;
+	}
 
 	const text& Bridge::GetEndPoint()
 	{
@@ -29,11 +37,13 @@ namespace voidum
 
 	void Bridge::Enable()
 	{
-		//add bridge into engine
+		auto engine = Engine::Instance();
+		engine->AddBridge(this);
 	}
 
 	void Bridge::Disable()
 	{
-		//remove bridge from engine
+		auto engine = Engine::Instance();
+		engine->RemoveBridge(this);
 	}
 }

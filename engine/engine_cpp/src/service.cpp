@@ -50,9 +50,4 @@ namespace voidum
 	{
 		return _Protect;
 	}
-
-	Task* Service::CreateTask()
-	{
-		return nullptr;
-	}
 }

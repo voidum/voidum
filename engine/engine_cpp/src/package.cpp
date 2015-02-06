@@ -15,7 +15,8 @@ namespace voidum
 		auto define = locator->Request("define");
 		if (!package->Parse(define))
 			ClearObject(package);
-		package->_Host = bridge->GetHostMode();
+		package->_Bridge = bridge;
+		package->_Driver = driver;
 		return package;
 	}
 
@@ -66,8 +67,18 @@ namespace voidum
 		return nullptr;
 	}
 
-	int Package::GetHostMode()
+	Service* Package::operator[](const text& name)
 	{
-		return _Host;
+		return GetService(name);
+	}
+
+	Bridge* Package::GetBridge()
+	{
+		return _Bridge;
+	}
+
+	Driver* Package::GetDriver()
+	{
+		return _Driver;
 	}
 }

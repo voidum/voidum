@@ -114,6 +114,9 @@
     <ClInclude Include="include\bridge_local.h">
       <Filter>local\header</Filter>
     </ClInclude>
+    <ClInclude Include="include\locator_local.h">
+      <Filter>local\header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -174,6 +177,9 @@
       <Filter>model\source</Filter>
     </ClCompile>
     <ClCompile Include="src\bridge_local.cpp">
+      <Filter>local\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\locator_local.cpp">
       <Filter>local\source</Filter>
     </ClCompile>
   </ItemGroup>

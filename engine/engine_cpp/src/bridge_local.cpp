@@ -1,7 +1,17 @@
 #include "bridge_local.h"
+#include "locator_local.h"
 
 namespace voidum
 {
+	LocalBridge::LocalBridge(const text& name)
+		: Bridge(name)
+	{
+	}
+
+	LocalBridge::~LocalBridge()
+	{
+	}
+
 	int LocalBridge::GetHostMode()
 	{
 		return HOST_LOCAL;
@@ -9,7 +19,7 @@ namespace voidum
 
 	Locator* LocalBridge::CreateLocator()
 	{
-		return nullptr;
+		return new LocalLocator();
 	}
 
 	bool LocalBridge::Connect(const text& endpoint)

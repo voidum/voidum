@@ -59,13 +59,13 @@ namespace voidum
 		_Worker = worker;
 	}
 
-	Bridge* Engine::GetBridge(int host)
+	Bridge* Engine::GetBridge(const text& name)
 	{
 		using iter = std::list<Bridge*>::iterator;
 		std::lock_guard<std::mutex> lock(_SyncRoot);
 		for (iter i = _Bridges.begin(); i != _Bridges.end(); i++) {
 			auto temp = *i;
-			if (temp->GetHostMode() == host)
+			if (temp->GetName() == name)
 				return temp;
 		}
 		return nullptr;
@@ -79,8 +79,8 @@ namespace voidum
 		std::lock_guard<std::mutex> lock(_SyncRoot);
 		for (iter i = _Bridges.begin(); i != _Bridges.end(); i++) {
 			auto temp = *i;
-			if (temp == bridge ||
-				temp->GetHostMode() == bridge->GetHostMode())
+			if (temp == bridge || 
+				temp->GetName() == bridge->GetName())
 				return;
 		}
 		_Bridges.push_back(bridge);
@@ -95,7 +95,7 @@ namespace voidum
 		for (iter i = _Bridges.begin(); i != _Bridges.end(); i++) {
 			auto temp = *i;
 			if (temp == bridge ||
-				temp->GetHostMode() == bridge->GetHostMode()) {
+				temp->GetName() == bridge->GetName()) {
 				if (clear)
 					ClearObject(temp);
 				_Bridges.erase(i);

@@ -33,8 +33,12 @@ namespace voidum
 		//package services
 		std::list<Service*> _Services;
 
-		//package host mode
-		int _Host;
+	protected:
+		//bridge for package
+		Bridge* _Bridge;
+
+		//driver for package
+		Driver* _Driver;
 
 	protected:
 		Package();
@@ -56,11 +60,19 @@ namespace voidum
 		//get package runtime
 		const text& GetRuntime();
 
+	public:
 		//get service by name
 		Service* GetService(const text& name);
 
-		//get host mode
-		int GetHostMode();
+		//get service by name
+		Service* operator [] (const text& name);
+
+	public:
+		//get bridge
+		Bridge* GetBridge();
+
+		//get driver
+		Driver* GetDriver();
 
 	public:
 		//mount package

@@ -8,6 +8,10 @@ namespace voidum
 	class VOIDUM_API LocalBridge : public Bridge
 	{
 	public:
+		LocalBridge(const text& name);
+		~LocalBridge();
+
+	public:
 		virtual int GetHostMode();
 		virtual Locator* CreateLocator();
 

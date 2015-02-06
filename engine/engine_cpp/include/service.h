@@ -63,10 +63,6 @@ namespace voidum
 
 		//get protect flag
 		bool HasProtect();
-
-	public:
-		//create task
-		Task* CreateTask();
 	};
 }
 
