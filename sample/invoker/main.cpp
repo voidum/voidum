@@ -3,35 +3,32 @@
 
 using namespace voidum;
 
-Engine* engine = nullptr;
-
 int main()
 {
-	engine = Engine::Instance();
-	//engine->SetWorker(new UserDefinedWorker());
+  auto engine = Engine::Start();
+  //engine->SetWorker(new UserDefinedWorker());
 
-	Driver::Load("mscpp11")->Enable();
+  auto driver1 = Driver::Load("mscpp11");
+  driver1->Enable();
 
-	auto bridge1 = new LocalBridge("local1");
-	bridge1->Connect("E:\\");
-	bridge1->Enable();
-	//auto bridge2 = new DummyBridge();
-	//bridge2->Enable();
-	//auto bridge3 = new RemoteBridge();
-	//bridge3->Enable();
+  auto host1 = new LocalHost("local1");
+  //auto host2 = new DummyHost();
+  //auto host3 = new RemoteHost();
+  host1->Enable();
+  host1->Connect("E:\\");
 
-	auto package = Package::Load(bridge1, "sample");
-	auto service = package->GetService("");
+  auto package = host1::GetPackage("sample");
+  auto service = package->GetService("test1");
 
-	auto task = Task::Create(service);
-	auto memory = task->GetMemory();
-	auto dataset = memory->GetDataset();
-	dataset->Count();
-	task->Start();
-	task->Join();
+  auto task = Task::Create(service);
+  auto memory = task->GetMemory();
+  memory->Write(raw_data, raw_data_size);
+  task->Start();
+  task->Join();
 
-	//bridge2->Disable();
-	//bridge3->Disable();
-	delete engine;
-	return 0;
+  host1->Disable();
+
+  driver1->Disable();
+  Engine::Stop();
+  return 0;
 }

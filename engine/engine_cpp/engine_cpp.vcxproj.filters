@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include=".resource">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="base">
       <UniqueIdentifier>{76c4baa1-eba1-40f8-bcfb-cf218cc3c27c}</UniqueIdentifier>
     </Filter>
@@ -16,27 +12,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="model">
-      <UniqueIdentifier>{7e52a91b-91d9-4640-93fe-fadcbfc474af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="model\header">
-      <UniqueIdentifier>{bbcbccbd-2d11-4ec9-8449-eb79823c5d9d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="model\source">
-      <UniqueIdentifier>{bca42495-51d2-4780-95fe-150189141746}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="data">
-      <UniqueIdentifier>{54b89a80-db03-42d2-890f-bf66fd170ff9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="data\header">
-      <UniqueIdentifier>{16a1c727-81df-4229-829c-254ec7370a4a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="data\source">
-      <UniqueIdentifier>{05bf9501-d85e-4c3f-8c18-def6dcabe5be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include=".sdk">
-      <UniqueIdentifier>{6d9217a9-2d09-457b-920a-12d5568d82ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="local">
       <UniqueIdentifier>{6ab7a400-873d-4e21-af82-b385934866af}</UniqueIdentifier>
     </Filter>
@@ -46,151 +21,162 @@
     <Filter Include="local\source">
       <UniqueIdentifier>{08b1932d-b6e8-428a-992c-d92383e7324c}</UniqueIdentifier>
     </Filter>
+    <Filter Include=".sdk">
+      <UniqueIdentifier>{5005aabc-9c8f-4570-a051-323e190f8258}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="host">
+      <UniqueIdentifier>{54b89a80-db03-42d2-890f-bf66fd170ff9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="host\header">
+      <UniqueIdentifier>{16a1c727-81df-4229-829c-254ec7370a4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="host\source">
+      <UniqueIdentifier>{05bf9501-d85e-4c3f-8c18-def6dcabe5be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="task">
+      <UniqueIdentifier>{7e52a91b-91d9-4640-93fe-fadcbfc474af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="task\header">
+      <UniqueIdentifier>{bbcbccbd-2d11-4ec9-8449-eb79823c5d9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="task\source">
+      <UniqueIdentifier>{bca42495-51d2-4780-95fe-150189141746}</UniqueIdentifier>
+    </Filter>
+    <Filter Include=".version">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\const.h">
-      <Filter>base\header</Filter>
-    </ClInclude>
-    <ClInclude Include="res\resource.h">
-      <Filter>.resource</Filter>
-    </ClInclude>
-    <ClInclude Include="include\base.h">
-      <Filter>base\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\text.h">
-      <Filter>base\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\service.h">
-      <Filter>model\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\package.h">
-      <Filter>model\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\thread.h">
-      <Filter>local\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\setting.h">
-      <Filter>base\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\worker_cq.h">
-      <Filter>local\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\engine.h">
-      <Filter>base\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\context.h">
-      <Filter>data\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\dataset.h">
-      <Filter>data\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\error.h">
-      <Filter>data\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\memory.h">
-      <Filter>data\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\driver.h">
-      <Filter>model\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\locator.h">
-      <Filter>model\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\field.h">
-      <Filter>data\header</Filter>
-    </ClInclude>
-    <ClInclude Include="include\voidum.h">
+    <ClInclude Include="src\base\voidum.h">
       <Filter>.sdk</Filter>
     </ClInclude>
-    <ClInclude Include="include\bridge.h">
-      <Filter>model\header</Filter>
+    <ClInclude Include="src\version\resource.h">
+      <Filter>.version</Filter>
     </ClInclude>
-    <ClInclude Include="include\task.h">
-      <Filter>model\header</Filter>
+    <ClInclude Include="src\base\base.h">
+      <Filter>base\header</Filter>
     </ClInclude>
-    <ClInclude Include="include\worker.h">
-      <Filter>model\header</Filter>
+    <ClInclude Include="src\base\const.h">
+      <Filter>base\header</Filter>
     </ClInclude>
-    <ClInclude Include="include\bridge_local.h">
+    <ClInclude Include="src\base\engine.h">
+      <Filter>base\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\setting.h">
+      <Filter>base\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\text.h">
+      <Filter>base\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\list.h">
+      <Filter>base\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\host\driver.h">
+      <Filter>host\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\host\package.h">
+      <Filter>host\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\host\service.h">
+      <Filter>host\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\local\worker_cq.h">
       <Filter>local\header</Filter>
     </ClInclude>
-    <ClInclude Include="include\locator_local.h">
+    <ClInclude Include="src\task\context.h">
+      <Filter>task\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\task\error.h">
+      <Filter>task\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\task\memory.h">
+      <Filter>task\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\task\task.h">
+      <Filter>task\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\task\thread.h">
+      <Filter>task\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\task\worker.h">
+      <Filter>task\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\host\host.h">
+      <Filter>host\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\local\host_local.h">
       <Filter>local\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\task\message.h">
+      <Filter>task\header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\getter.h">
+      <Filter>base\header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\dllmain.cpp">
+    <ClCompile Include="src\base\base.cpp">
       <Filter>base\source</Filter>
     </ClCompile>
-    <ClCompile Include="src\base.cpp">
+    <ClCompile Include="src\base\dllmain.cpp">
       <Filter>base\source</Filter>
     </ClCompile>
-    <ClCompile Include="src\text.cpp">
+    <ClCompile Include="src\base\engine.cpp">
       <Filter>base\source</Filter>
     </ClCompile>
-    <ClCompile Include="src\service.cpp">
-      <Filter>model\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\package.cpp">
-      <Filter>model\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\setting.cpp">
+    <ClCompile Include="src\base\setting.cpp">
       <Filter>base\source</Filter>
     </ClCompile>
-    <ClCompile Include="src\worker_cq.cpp">
+    <ClCompile Include="src\base\text.cpp">
+      <Filter>base\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\host\driver.cpp">
+      <Filter>host\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\host\package.cpp">
+      <Filter>host\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\host\service.cpp">
+      <Filter>host\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\local\worker_cq.cpp">
       <Filter>local\source</Filter>
     </ClCompile>
-    <ClCompile Include="src\thread.cpp">
+    <ClCompile Include="src\task\context.cpp">
+      <Filter>task\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\task\error.cpp">
+      <Filter>task\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\task\memory.cpp">
+      <Filter>task\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\task\task.cpp">
+      <Filter>task\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\task\thread.cpp">
+      <Filter>task\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\task\worker.cpp">
+      <Filter>task\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\host\host.cpp">
+      <Filter>host\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\local\host_local.cpp">
       <Filter>local\source</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine.cpp">
+    <ClCompile Include="src\task\message.cpp">
+      <Filter>task\source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\getter.cpp">
       <Filter>base\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\context.cpp">
-      <Filter>data\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\dataset.cpp">
-      <Filter>data\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\error.cpp">
-      <Filter>data\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\memory.cpp">
-      <Filter>data\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\driver.cpp">
-      <Filter>model\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\locator.cpp">
-      <Filter>model\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\field.cpp">
-      <Filter>data\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\bridge.cpp">
-      <Filter>model\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\task.cpp">
-      <Filter>model\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\worker.cpp">
-      <Filter>model\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\bridge_local.cpp">
-      <Filter>local\source</Filter>
-    </ClCompile>
-    <ClCompile Include="src\locator_local.cpp">
-      <Filter>local\source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="res\engine_cpp.rc">
-      <Filter>.resource</Filter>
+    <ResourceCompile Include="src\version\engine_cpp.rc">
+      <Filter>.version</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="todo.txt">
-      <Filter>.resource</Filter>
-    </Text>
   </ItemGroup>
 </Project>
