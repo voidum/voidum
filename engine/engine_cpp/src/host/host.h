@@ -37,7 +37,7 @@ namespace voidum
 
   public:
     //test if host has package
-    bool Contains(const Package* package);
+    bool Contains(const Package& package);
 
     //get package by name
     //try to load if found nothing

@@ -9,16 +9,18 @@ namespace voidum
   {
   private:
     raw data_;
-    uint64 length_;
+    uint32 length_;
 
   public:
     Message();
     ~Message();
 
   public:
-    void Write(raw data, uint64 length, uint64 offset = 0);
+    uint32 Length();
 
-    raw Read(uint64 length, uint64 offset = 0);
+    raw Read(uint32 offset = 0);
+
+    void Write(raw data, uint32 length, uint32 offset = 0);
   };
 }
 

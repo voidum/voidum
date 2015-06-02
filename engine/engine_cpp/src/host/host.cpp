@@ -5,20 +5,19 @@
 
 namespace voidum
 {
-	Host* Host::Find(const text& name)
-	{
-		auto hosts = Getter::Engine::GetHosts()();
-    return hosts->Find(
-      [&name](Host* host) {
-        return host->GetName() == name;
-      });
-	}
+  Host* Host::Find(const text& name)
+  {
+    auto hosts = Getter::Engine::GetHosts()();
+    return hosts->Find([&name](Host* host) {
+      return host->GetName() == name;
+    });
+  }
 
-  Host* Host::Find(const Package& package) 
+  Host* Host::Find(const Package& package)
   {
     auto hosts = Getter::Engine::GetHosts()();
     return hosts->Find([&package](Host* host) {
-      return host->Contains(&package);
+      return host->Contains(package);
     });
   }
 
@@ -40,7 +39,7 @@ namespace voidum
 		return endpoint_;
 	}
 
-  bool Host::Contains(const Package* package)
+  bool Host::Contains(const Package& package)
   {
     return packages_->Contains(package);
   }
@@ -54,12 +53,12 @@ namespace voidum
   void Host::Enable()
 	{
     auto hosts = Getter::Engine::GetHosts()();
-    hosts->Add(this);
+    hosts->Add(*this);
 	}
 
   void Host::Disable()
 	{
     auto hosts = Getter::Engine::GetHosts()();
-    hosts->Remove(this);
+    hosts->Remove(*this);
 	}
 }

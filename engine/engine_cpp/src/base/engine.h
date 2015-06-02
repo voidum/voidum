@@ -17,18 +17,12 @@ namespace voidum
   class VOIDUM_API Engine : Uncopiable
   {
   private:
+    static std::once_flag* once_flag_;
     static Engine* instance_;
 
   public:
     //get engine instance
-    //start engine first
     static Engine* Instance();
-
-    //start engine
-    static Engine* Start();
-
-    //stop engine
-    static void Stop();
 
   private:
     List<Host>* hosts_;
@@ -51,6 +45,13 @@ namespace voidum
 
     //get setting
     Setting* GetSetting();
+
+  public:
+    //start engine
+    void Start();
+
+    //stop engine
+    void Stop();
 
   public:
     friend class Getter::Engine;

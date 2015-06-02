@@ -21,14 +21,13 @@ namespace voidum
 		return driver;
 	}
 
-	Driver* Driver::Find(const text& runtime)
-	{
+  Driver* Driver::Find(const text& runtime)
+  {
     auto drivers = Getter::Engine::GetDrivers()();
-		return drivers->Find(
-      [runtime](Driver* driver) {
-        return driver->GetRuntime() == runtime;
-      });
-	}
+    return drivers->Find([runtime](Driver* driver) {
+      return driver->GetRuntime() == runtime;
+    });
+  }
 
 	Driver::Driver() { }
 
@@ -37,12 +36,12 @@ namespace voidum
 	void Driver::Enable()
 	{
     auto drivers = Getter::Engine::GetDrivers()();
-    drivers->Add(this);
+    drivers->Add(*this);
 	}
 
 	void Driver::Disable()
 	{
     auto drivers = Getter::Engine::GetDrivers()();
-    drivers->Remove(this);
+    drivers->Remove(*this);
 	}
 }

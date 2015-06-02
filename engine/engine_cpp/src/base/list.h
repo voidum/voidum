@@ -17,40 +17,38 @@ namespace voidum
     typedef typename std::function<bool(T*)> predicate_t;
 
   private:
-    std::mutex* sync_root_;
-    std::list<T*>* data_;
+    std::mutex sync_root_;
+    std::list<T*> data_;
 
   public:
-    List()
-    {
-      sync_root_ = new std::mutex();
-      data_ = new std::list<T*>();
-    }
+    List() { }
 
     ~List()
     {
-      RemoveAll(true);
-      delete data_;
-      delete sync_root_;
+      Clear(true);
     }
 
   public:
-    bool Contains(const T* item)
+    int Count()
     {
-      if (item == nullptr)
-        return false;
-      std::lock_guard<std::mutex> lock(*sync_root_);
-      for (iterator_t i = data_->begin(); i != data_->end(); i++) {
-        if (*i == item)
+      std::lock_guard<std::mutex> lock(sync_root_);
+      return data_.size();
+    }
+
+    bool Contains(const T& item)
+    {
+      std::lock_guard<std::mutex> lock(sync_root_);
+      for (iterator_t i = data_.begin(); i != data_.end(); i++) {
+        if (*i == &item)
           return true;
       }
       return false;
     }
 
-    bool Contains(const predicate_t& predicate) 
+    bool Exists(const predicate_t& predicate) 
     {
-      std::lock_guard<std::mutex> lock(*sync_root_);
-      for (iterator_t i = data_->begin(); i != data_->end(); i++) {
+      std::lock_guard<std::mutex> lock(sync_root_);
+      for (iterator_t i = data_.begin(); i != data_.end(); i++) {
         if (predicate(*i))
           return true;
       }
@@ -60,8 +58,8 @@ namespace voidum
     //get item:T by predicate
     T* Find(const predicate_t& predicate)
     {
-      std::lock_guard<std::mutex> lock(*sync_root_);
-      for (iterator_t i = data_->begin(); i != data_->end(); i++) {
+      std::lock_guard<std::mutex> lock(sync_root_);
+      for (iterator_t i = data_.begin(); i != data_.end(); i++) {
         auto temp = *i;
         if (predicate(temp))
           return temp;
@@ -70,55 +68,37 @@ namespace voidum
     }
 
     //add item
-    void Add(T* item)
+    void Add(const T& item)
     {
-      if (item == nullptr)
-        return;
-      std::lock_guard<std::mutex> lock(*sync_root_);
-      data_->push_back(item);
+      std::lock_guard<std::mutex> lock(sync_root_);
+      auto target = const_cast<T*>(&item);
+      data_.push_back(target);
     }
 
     //remove item
-    void Remove(T* item, bool clear = false)
+    void Remove(const T& item, bool clear = false)
     {
-      if (item == nullptr)
-        return;
-      std::lock_guard<std::mutex> lock(*sync_root_);
-      for (iterator_t i = data_->begin(); i != data_->end(); i++) {
+      std::lock_guard<std::mutex> lock(sync_root_);
+      for (iterator_t i = data_.begin(); i != data_.end(); i++) {
         auto temp = *i;
-        if (temp == item) {
+        if (temp == &item) {
           if (clear)
-            ClearObject(temp);
-          data_->erase(i);
-          break;
-        }
-      }
-    }
-
-    //remove item at
-    void RemoveAt(const predicate_t& predicate, bool clear = false)
-    {
-      std::lock_guard<std::mutex> lock(*sync_root_);
-      for (iterator_t i = data_->begin(); i != data_->end(); i++) {
-        auto temp = *i;
-        if (predicate(temp)) {
-          if (clear)
-            ClearObject(temp);
-          data_->erase(i);
+            delete temp;
+          data_.erase(i);
           break;
         }
       }
     }
 
     //remove all items
-    void RemoveAll(bool clear = false)
+    void Clear(bool clear = false)
     {
-      std::lock_guard<std::mutex> lock(*sync_root_);
+      std::lock_guard<std::mutex> lock(sync_root_);
       if (clear) {
-        for (iterator_t i = data_->begin(); i != data_->end(); i++)
-          ClearObject(*i);
+        for (iterator_t i = data_.begin(); i != data_.end(); i++)
+          delete *i;
       }
-      data_->clear();
+      data_.clear();
     }
   };
 }

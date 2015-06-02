@@ -11,13 +11,13 @@ namespace voidum
 	class VOIDUM_API Context
 	{
 	private:
-		std::mutex _SyncRoot;
+		std::mutex sync_root_;
 
 	private:
-		uint8 _LastState;
-		uint8 _CurrentState;
-		uint8 _ReturnCode;
-		uint8 _ControlCode;
+		uint8 last_state_;
+		uint8 current_state_;
+		uint8 return_code_;
+		uint8 control_code_;
 
 	public:
 		Context();

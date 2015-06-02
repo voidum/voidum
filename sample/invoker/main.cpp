@@ -5,8 +5,9 @@ using namespace voidum;
 
 int main()
 {
-  auto engine = Engine::Start();
+  auto engine = Engine::Instance();
   //engine->SetWorker(new UserDefinedWorker());
+  engine->Start();
 
   auto driver1 = Driver::Load("mscpp11");
   driver1->Enable();
@@ -27,8 +28,7 @@ int main()
   task->Join();
 
   host1->Disable();
-
   driver1->Disable();
-  Engine::Stop();
+  engine->Stop();
   return 0;
 }

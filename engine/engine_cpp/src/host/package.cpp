@@ -29,12 +29,11 @@ namespace voidum
 		return runtime_;
 	}
 
-	Service* Package::GetService(const text& name)
-	{
-    return services_->Find(
-      [name](Service* service) {
-        return service->GetName() == name;
-      });
+  Service* Package::GetService(const text& name)
+  {
+    return services_->Find([name](Service* service) {
+      return service->GetName() == name;
+    });
   }
 
 	Service* Package::operator[](const text& name)

@@ -59,7 +59,7 @@ namespace voidum
     RETURN_UNHANDLED = 5
   }; //context return code
 
-  const text VERSION = "0.1.0.20150202";
+  const text VERSION = "0.1.0";
 }
 
 #endif

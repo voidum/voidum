@@ -7,26 +7,15 @@
 namespace voidum
 {
   Engine* Engine::instance_ = nullptr;
+  std::once_flag* Engine::once_flag_ = new std::once_flag();
 
   Engine* Engine::Instance()
   {
+    std::call_once(*once_flag_, []() {
+      if (instance_ == nullptr)
+        instance_ = new Engine();
+    });
     return instance_;
-  }
-
-  Engine* Engine::Start()
-  {
-    instance_ = new Engine();
-    if (instance_->worker_ != nullptr)
-      instance_->worker_->Start();
-    return instance_;
-  }
-
-  void Engine::Stop()
-  {
-    if (instance_->worker_ != nullptr)
-      instance_->worker_->Stop();
-    delete instance_;
-    instance_ = nullptr;
   }
 
 	Engine::Engine()
@@ -65,4 +54,16 @@ namespace voidum
     }
 		worker_ = worker;
 	}
+
+  void Engine::Start()
+  {
+    if (instance_->worker_ != nullptr)
+      instance_->worker_->Start();
+  }
+
+  void Engine::Stop()
+  {
+    if (instance_->worker_ != nullptr)
+      instance_->worker_->Stop();
+  }
 }
