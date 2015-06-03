@@ -4,8 +4,6 @@
 #include <string>
 #include <mutex>
 
-#include "windows.h"
-
 #ifdef VOIDUM_EXPORTS
 #define VOIDUM_API __declspec(dllexport)
 #else

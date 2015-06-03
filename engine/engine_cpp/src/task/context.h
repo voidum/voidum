@@ -50,9 +50,6 @@ namespace voidum
 	public:
 		//switch pause and resume
 		void SwitchHold();
-
-		//try to pause and wait for resume
-		void TryHold();
 	};
 }
 

@@ -10,46 +10,35 @@ namespace voidum
 	class Thread
 	{
 	private:
-		static uint32 WINAPI Handler(raw sender);
-
-	private:
-		HANDLE _Handle;
-		uint32 _CPUs;
-		Task* _Task;
-		bool _IsSuspend;
-		bool _IsTemp;
+		Task* task_;
 
 	public:
 		Thread();
 		~Thread();
 
 	public:
-		HANDLE GetHandle();
-
+    //get task on thread
 		Task* GetTask();
 
-		uint32 GetCPUs();
-
-		bool IsSuspend();
-
-		bool IsTemp();
-
-	public:
+    //set task on thread
 		void SetTask(Task* task);
 
-		void SetCPUs(uint32 mask);
-
-		void SetTemp(bool value);
-
 	public:
-		void Start();
+    //test if this is current thread
+    virtual bool IsCurrent() = 0;
 
-		void Terminate();
+    //start thread
+		virtual void Start() = 0;
 
-		void Suspend();
+    //stop thread
+    virtual void Stop() = 0;
 
-		bool Resume();
-	};
+    //suspend thread
+    virtual void Suspend() = 0;
+
+    //resume thread
+    virtual void Resume() = 0;
+  };
 }
 
 #endif

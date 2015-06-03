@@ -12,7 +12,6 @@ namespace voidum
 	class VOIDUM_API Task
 	{
 		friend class Worker;
-		friend class Thread;
 
 	public:
 		//create task for service
@@ -25,7 +24,6 @@ namespace voidum
 		text index_;
     bool protect_;
     Service* service_;
-    Context* context_;
     Memory* memory_;
 
 	protected:
@@ -73,6 +71,8 @@ namespace voidum
 	public:
 		//wait for task return
 		void Join();
+
+    void TryHold();
 	};
 }
 

@@ -9,6 +9,8 @@
 #include "setting.h"
 #include "worker.h"
 
+#include <windows.h>
+
 namespace voidum
 {
 	Task* Task::Create(Service* service)
@@ -23,7 +25,7 @@ namespace voidum
 	Task* Task::Current()
 	{
 		auto worker = Worker::Instance();
-		return worker->CurrentTask();
+		return worker->GetCurrentTask();
 	}
 
 	Task::Task()
@@ -33,30 +35,31 @@ namespace voidum
 
 	Task::~Task()
 	{
-		ClearObject(memory_);
+		delete memory_;
 	}
 
 	void Task::Invoke()
 	{
+    auto context = memory_->GetContext();
 		try {
-			context_->SetControlCode(CONTROL_NULL);
-      context_->SetReturnCode(RETURN_NULLENTRY);
-      context_->SetState(STATE_BUSY);
+			context->SetControlCode(CONTROL_NULL);
+      context->SetReturnCode(RETURN_NULLENTRY);
+      context->SetState(STATE_BUSY);
 			if (protect_)
 				OnSafeProcess();
 			else
 				OnProcess();
-      context_->SetReturnCode(RETURN_NORMAL);
+      context->SetReturnCode(RETURN_NORMAL);
 		}
 		catch (Error*) {
-      context_->SetState(STATE_ROLLBACK);
+      context->SetState(STATE_ROLLBACK);
       if (protect_)
 				OnSafeRollback();
 			else
 				OnRollback();
-      context_->SetReturnCode(RETURN_ERROR);
+      context->SetReturnCode(RETURN_ERROR);
 		}
-    context_->SetState(STATE_IDLE);
+    context->SetState(STATE_IDLE);
 	}
 
 	void Task::OnSafeProcess()
@@ -65,10 +68,10 @@ namespace voidum
 			OnProcess();
 		}
 		__except (EXCEPTION_EXECUTE_HANDLER) {
-      if (context_ != nullptr) {
-        context_->SetReturnCode(RETURN_UNHANDLED);
+      auto context = memory_->GetContext();
+      if (context != nullptr) {
+        context->SetReturnCode(RETURN_UNHANDLED);
       }
-			//todo: broadcast
 		}
 	}
 
@@ -78,10 +81,10 @@ namespace voidum
 			OnRollback();
 		}
     __except (EXCEPTION_EXECUTE_HANDLER) {
-      if (context_ != nullptr) {
-        context_->SetReturnCode(RETURN_UNHANDLED);
+      auto context = memory_->GetContext();
+      if (context != nullptr) {
+        context->SetReturnCode(RETURN_UNHANDLED);
       }
-      //todo: broadcast
     }
 	}
 
@@ -92,63 +95,79 @@ namespace voidum
 
 	void Task::Start()
 	{
-		auto worker = Worker::Instance();
-    context_->SetState(STATE_QUEUE);
+    auto context = memory_->GetContext();
+    context->SetState(STATE_QUEUE);
+    auto worker = Worker::Instance();
 		worker->StartTask(this);
 	}
 
 	void Task::Stop(uint32 wait)
 	{
+    auto context = memory_->GetContext();
 		auto worker = Worker::Instance();
 		if (wait != 0)
 		{
-      context_->SetControlCode(CONTROL_CANCEL);
+      context->SetControlCode(CONTROL_CANCEL);
 			uint32 time0 = GetTickCount();
 			uint32 time1 = time0;
 			while (time1 - time0 < wait)
 			{
-        if (context_->GetCurrentState() == STATE_IDLE)
+        if (context->GetCurrentState() == STATE_IDLE)
 					return;
 				Sleep(20);
 			}
 		}
 		worker->StopTask(this);
-    context_->SetReturnCode(RETURN_TERMINATE);
-    context_->SetState(STATE_IDLE);
+    context->SetReturnCode(RETURN_TERMINATE);
+    context->SetState(STATE_IDLE);
 	}
 
 	void Task::Pause(uint32 wait)
 	{
+    auto context = memory_->GetContext();
 		auto worker = Worker::Instance();
 		if (wait != 0)
 		{
-      context_->SetControlCode(CONTROL_PAUSE);
+      context->SetControlCode(CONTROL_PAUSE);
 			uint32 time0 = GetTickCount();
 			uint32 time1 = time0;
 			while (time1 - time0 < wait)
 			{
-        if (context_->GetCurrentState() == STATE_PAUSE)
+        if (context->GetCurrentState() == STATE_PAUSE)
 					return;
 				Sleep(20);
 			}
 		}
 		worker->PauseTask(this);
-    context_->SetState(STATE_PAUSE);
-    context_->SetControlCode(CONTROL_NULL);
+    context->SetState(STATE_PAUSE);
+    context->SetControlCode(CONTROL_NULL);
 	}
 
 	void Task::Resume()
 	{
-		auto worker = Worker::Instance();
+    auto context = memory_->GetContext();
+    auto worker = Worker::Instance();
 		if (!worker->ResumeTask(this))
-      context_->SetControlCode(CONTROL_RESUME);
+      context->SetControlCode(CONTROL_RESUME);
 	}
 
 	void Task::Join()
 	{
-		auto setting = Setting::Instance();
+    auto context = memory_->GetContext();
+    auto setting = Setting::Instance();
 		int span = setting->IsRealTime() ? 0 : 50;
-    while (context_->GetCurrentState() != STATE_IDLE)
+    while (context->GetCurrentState() != STATE_IDLE)
 			Sleep(span);
 	}
+
+  void Task::TryHold()
+  {
+    auto context = memory_->GetContext();
+    if (context->GetControlCode() == CONTROL_PAUSE) {
+      context->SwitchHold();
+      while (context->GetControlCode() != CONTROL_RESUME)
+        Sleep(50);
+      context->SwitchHold();
+    }
+  }
 }

@@ -84,15 +84,4 @@ namespace voidum
 		}
     sync_root_.unlock();
 	}
-
-	void Context::TryHold()
-	{
-		if (GetControlCode() == CONTROL_PAUSE)
-		{
-			SwitchHold();
-			while (GetControlCode() != CONTROL_RESUME)
-				Sleep(50);
-			SwitchHold();
-		}
-	}
 }

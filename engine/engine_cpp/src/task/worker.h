@@ -5,13 +5,10 @@
 
 namespace voidum
 {
-	class Engine;
-	class Thread;
-	class Task;
+  class Task;
 
-	class Worker : Uncopiable
+  class Worker : Uncopiable
 	{
-		friend class Engine;
 		friend class Task;
 
 	public:
@@ -29,8 +26,8 @@ namespace voidum
 		virtual void Stop() = 0;
 
 	protected:
-		//get task at current thread
-		virtual Task* CurrentTask() = 0;
+		//get current task
+		virtual Task* GetCurrentTask() = 0;
 
 	protected:
 		//start task
